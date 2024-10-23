@@ -1,3 +1,4 @@
+import { useUsersStore } from '@/stores/users'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
@@ -36,12 +37,18 @@ const routes = [
       {
         path: '/account',
         name: 'TheAccountPage',
-        component: () => import('@/pages/TheAccountPage.vue')
+        component: () => import('@/pages/TheAccountPage.vue'),
+        meta: {
+          authRequired: true
+        }
       },
       {
         path: '/basket',
         name: 'TheBasketPage',
-        component: () => import('@/pages/TheBasketPage.vue')
+        component: () => import('@/pages/TheBasketPage.vue'),
+        meta: {
+          authRequired: true
+        }
       }
     ]
   }
@@ -54,4 +61,36 @@ const router = createRouter({
     return { top: 0 }
   }
 })
+
+// router.beforeEach((to) => {
+//   const userStore = useUsersStore()
+
+//   // Якщо користувач не авторизований і сторінка вимагає авторизації
+//   if (!userStore.isLoggedIn && to.meta.authRequired) {
+//     if (to.name !== 'TheProfile') {
+//       return { name: 'TheProfile' }
+//     }
+//   }
+
+//   // Якщо користувач авторизований
+//   else if (userStore.isLoggedIn) {
+//     if (to.name === 'TheProfile' || to.name === 'TheBasketPage') {
+//       return true // Дозволяємо доступ до сторінок профілю чи кошика
+//     }
+
+//     // Якщо намагається зайти на профіль або сторінку з авторизацією
+//     if (to.meta.authRequired && to.name !== 'HomePage') {
+//       return true
+//     }
+
+//     // Не перенаправляти на головну, якщо користувач вже на ній
+//     if (to.name !== 'HomePage') {
+//       return { name: 'HomePage' }
+//     }
+//   }
+
+//   // Якщо не підпадає під жодну перевірку, дозволяємо перехід
+//   return true
+// })
+
 export default router

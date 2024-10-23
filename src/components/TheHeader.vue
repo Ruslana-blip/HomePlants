@@ -20,13 +20,16 @@
         <div v-if="isPopUpVisible" class="header__overlay">
           <PopUpBag :isPopUpVisible="isPopUpVisible" :togglePopUpBag="togglePopUpBag" />
         </div>
-
         <div class="header__icon" @click="toggleCabinet">
           <img src="@/assets/images/header/user.svg" alt="User profile" title="User profile" />
         </div>
-
-        <div class="header__overlay" v-if="isCabinetOpen">
+        <div class="header__overlay" v-if="isCabinetOpen && !this.user.length">
           <TheProfile :isCabinetOpen="isCabinetOpen" :toggleCabinet="toggleCabinet" />
+        </div>
+        <div v-else-if="this.user.length">
+          <RouterLink :to="{ name: 'TheAccountPage' }">
+            <img src="@/assets/images/header/user_exit.svg" alt="icon" title="icon" />
+          </RouterLink>
         </div>
       </div>
     </div>

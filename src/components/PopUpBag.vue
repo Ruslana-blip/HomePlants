@@ -7,7 +7,7 @@
       </div>
     </header>
     <TheBagsItem :bags="bags" :togglePopUpBag="togglePopUpBag" />
-    <footer class="footer">
+    <footer class="footer" v-if="bags.length">
       <div class="footer__container">
         <div class="footer__sum">
           <span>Разом до сплати:</span>

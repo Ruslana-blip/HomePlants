@@ -126,7 +126,7 @@ export default {
 }
 .empty {
   width: 100%;
-  height: 600px;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -10,6 +10,9 @@ export const useUsersStore = defineStore('usersStore', {
     },
     usersList: JSON.parse(localStorage.getItem('usersList')) || []
   }),
+  getters: {
+    isLoggedIn: (state) => !!state.user
+  },
   actions: {
     updateUserName(name) {
       this.user.name = name
