@@ -1,0 +1,22 @@
+html {
+  font-size: 10px;
+  @media (min-width: 992px) {
+    font-size: 14px;
+  }
+  @media (min-width: 1200px) {
+    font-size: 16px;
+  }
+}
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+#app {
+  background-color: $bg-white;
+  color: $main-black;
+  line-height: 1.4;
+}
+[class*='__container'] {
+  max-width: 1782px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
