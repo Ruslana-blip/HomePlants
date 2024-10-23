@@ -1,4 +1,3 @@
-import { useUsersStore } from '@/stores/users'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const routes = [
