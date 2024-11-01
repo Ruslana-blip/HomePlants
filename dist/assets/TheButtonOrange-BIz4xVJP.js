@@ -1,1 +1,0 @@
-import{_ as e,o as n,c as a,t as o,s}from"./index-CrEprENQ.js";const r={name:"TheButtonOrange",props:{title:{type:String},width:{type:Number}}};function c(i,p,t,_,l,d){return n(),a("button",{class:"btn",style:s({width:t.width+"px"})},o(t.title),5)}const u=e(r,[["render",c],["__scopeId","data-v-98a9e2c3"]]);export{u as T};
