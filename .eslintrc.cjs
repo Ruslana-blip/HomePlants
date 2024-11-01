@@ -2,7 +2,7 @@
 require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
-  publicPath: `/HomePlants/`,
+  publicPath: process.env.NODE_ENV === 'production' ? '/HomePlants/' : '/',
   root: true,
   extends: [
     'plugin:vue/vue3-essential',
