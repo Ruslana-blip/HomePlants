@@ -5,7 +5,7 @@
         <div class="header__menu">
           <img src="@/assets/images/header/menu.svg" alt="Icon of menu" title="Menu" />
         </div>
-        <span>Категорії</span>
+        <span>{{ category }}</span>
       </div>
       <div class="header__overlay" v-if="isDropdownOpen">
         <TheDropdown :isDropdownOpen="isDropdownOpen" :toggleDropdown="toggleDropdown" />
@@ -55,7 +55,8 @@ export default {
     return {
       isDropdownOpen: false,
       isPopUpVisible: false,
-      isCabinetOpen: false
+      isCabinetOpen: false,
+      category: 'Категорії'
     }
   },
   computed: {
@@ -78,8 +79,8 @@ export default {
 <style lang="scss" scoped>
 .header {
   margin-bottom: 20px;
-  margin-top: 10px;
-  @media (min-width: $sm) {
+  padding-top: 10px;
+  @media (min-width: $md) {
     margin-bottom: 64px;
   }
   // .header__container
@@ -97,49 +98,63 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border: 2px solid $main-black;
-    border-radius: 16px;
+    border-radius: 8px;
     cursor: pointer;
     position: relative;
     transition: $time;
     @media (min-width: $sm) {
       width: 143px;
+      height: 40px;
     }
     @media (min-width: $md) {
       width: 193px;
       height: 56px;
+    }
+    @media (min-width: $xl) {
+      width: 206px;
     }
     & span {
       display: none;
       @media (min-width: $sm) {
         font-family: 'Lato';
         font-weight: 500;
-        font-size: font-rem(24);
+        font-size: font-rem(18);
         display: flex;
+      }
+      @media (min-width: $md) {
+        font-size: font-rem(24);
       }
     }
   }
   // .header__menu
   &__menu {
-    margin-right: 4px;
   }
   // .header__logo
   &__logo {
-    flex: 1 1 auto;
-    text-align: center;
-    padding: 8px;
+    flex: 1 1 66px;
+    margin-left: 16px;
     font-family: 'Amatic';
-    font-size: font-rem(40);
+    font-size: font-rem(20);
+    font-weight: 700;
+    padding: 3px 4px;
     color: $green;
+    @media (min-width: $sm) {
+      font-size: font-rem(30);
+      text-align: center;
+    }
+    @media (min-width: $lg) {
+      font-size: font-rem(40);
+    }
   }
   // .header__icons
   &__icons {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 130px;
+    width: 80px;
     @media (min-width: $md) {
       width: 150px;
       height: 50px;

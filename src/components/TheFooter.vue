@@ -14,6 +14,7 @@
             <li>Доставка та оплата</li>
             <li>Повернення та обмін</li>
             <li>Підбір рослини</li>
+            <li>Блог</li>
           </ul>
         </div>
         <div class="footer__item">
@@ -71,16 +72,24 @@ export default {
   color: $secondary-white;
   // .footer__container
   &__container {
-    display: flex;
-    align-items: center;
     font-family: 'Lato';
-    font-size: font-tem(18);
     font-weight: 400;
-    height: 365px;
+    @media (min-width: $lg) {
+      display: flex;
+      align-items: center;
+      height: 365px;
+      font-size: font-rem(18);
+    }
   }
   // .footer__wrapp
   &__wrapp {
-    flex: 1 1 36%;
+    @media (min-width: $sm) {
+      text-align: center;
+    }
+    @media (min-width: $lg) {
+      text-align: left;
+      flex: 1 1 36%;
+    }
   }
   // .footer__logo
   &__logo {
@@ -89,33 +98,75 @@ export default {
     font-family: 'Amatic';
     font-size: font-rem(40);
     color: $green;
+    margin-top: 40px;
+    @media (min-width: $lg) {
+      margin-top: 0;
+    }
   }
+
   // .footer__desc
   &__desc {
     max-width: 384px;
-    margin-top: 24px;
+    margin-top: 16px;
     display: block;
+    @media (min-width: $sm) {
+      margin: 0 auto;
+    }
+    @media (min-width: $lg) {
+      margin-top: 24px;
+    }
+    @media (min-width: $xxl) {
+      margin: 24px 0 0 0;
+    }
   }
   // .footer__items
   &__items {
     display: flex;
     justify-content: space-between;
-    flex: 1 1 64%;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    column-gap: 16px;
+    margin-top: 32px;
+    padding-bottom: 40px;
+    @media (min-width: $lg) {
+      flex: 1 1 64%;
+      flex-wrap: nowrap;
+      margin-top: 0;
+      row-gap: 0;
+      column-gap: 0;
+      margin-bottom: 0;
+    }
   }
   // .footer__item
   &__item {
+    flex-basis: calc(50% - 16px);
+    @media (min-width: $sm) {
+      text-align: center;
+    }
+    @media (min-width: $lg) {
+      flex-basis: 0%;
+      text-align: left;
+      flex-basis: calc(25% - 16px);
+    }
     & h3 {
       font-weight: 700;
-      font-size: font-rem(18);
+      font-size: font-rem(16);
       margin-bottom: 24px;
+      @media (min-width: $lg) {
+        font-size: font-rem(18);
+      }
     }
   }
   // .footer__list
   &__list {
     font-weight: 300;
     & li {
+      font-size: font-rem(14);
       &:not(:last-child) {
         margin-bottom: 16px;
+      }
+      @media (min-width: $md) {
+        font-size: font-rem(16);
       }
     }
   }
@@ -127,12 +178,16 @@ export default {
   // .polite__container
   &__container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     height: 66px;
     color: $grey;
     font-size: font-rem(12);
     font-family: 'Roboto';
+    @media (min-width: $md) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
   // .polite__wrapp
   &__wrapp,
@@ -140,10 +195,19 @@ export default {
     display: flex;
   }
   &__wrapp {
+    justify-content: center;
     gap: 4px;
+    margin: 16px 0;
+    @media (min-width: $md) {
+      margin: 0;
+    }
   }
   &__items {
-    gap: 70px;
+    flex-direction: row;
+    justify-content: space-between;
+    @media (min-width: $md) {
+      gap: 70px;
+    }
   }
 }
 </style>

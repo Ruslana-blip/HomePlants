@@ -7,11 +7,14 @@
         :title="value.name"
       />
     </div>
-    <RouterLink :to="{ name: 'TheSinglePlantPage', params: { id: value.id } }" class="plant__name">
-      {{ value.name || value.title }}
-    </RouterLink>
     <div class="plant__info">
-      <span>{{ value?.price || value?.data }} ₴</span>
+      <RouterLink
+        :to="{ name: 'TheSinglePlantPage', params: { id: value.id } }"
+        class="plant__name"
+      >
+        {{ value.name || value.title }}
+      </RouterLink>
+      <span class="plant__price">{{ value?.price || value?.data }} ₴</span>
       <span class="plant__newArrivals">{{ value?.status }}</span>
     </div>
   </div>
@@ -36,41 +39,103 @@ export default {
 <style lang="scss" scoped>
 .plant {
   font-family: 'Lato';
-  font-size: font-rem(18);
+  font-size: font-rem(16);
   color: $secondary-black;
+  margin-right: 0;
+  min-width: 160px;
+  @media (min-width: $sm) {
+    min-width: 240px;
+  }
+  @media (min-width: $md) {
+    font-size: font-rem(18);
+  }
+  @media (min-width: $xxl) {
+    width: 384px;
+  }
   // .plant__img
   &__img {
-    height: 480px;
-    border-radius: 16px;
+    height: 200px;
+    @media (min-width: $md) {
+      height: 380px;
+    }
+    @media (min-width: $lg) {
+      height: 480px;
+      width: 100%;
+    }
+    @media (min-width: $xxl) {
+      width: 384px;
+      height: 480px;
+    }
     & img {
       height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      @media (min-width: $md) {
+        border-radius: 16px;
+      }
     }
   }
+
   // .plant__name
   &__name {
+    order: 2;
     display: block;
     font-weight: 500;
-    margin: 16px 0;
+    margin: 8px 0;
     transition: $time;
+    height: 40px;
+
     &:hover {
       color: $dark-purple-gray;
     }
+    @media (min-width: $md) {
+      margin: 16px 0;
+    }
+    @media (min-width: $lg) {
+      order: 1;
+      flex-basis: 100%;
+    }
   }
   &__info {
+    margin-top: 12px;
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    @media (min-width: $lg) {
+      flex-wrap: wrap;
+      flex-direction: row;
+    }
   }
   &__newArrivals {
-    width: 124px;
-    height: 22px;
+    order: 1;
+    width: 57px;
+    min-height: 18px;
     border-radius: 2px;
     background-color: $secondary-green;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: font-rem(14);
+    font-size: font-rem(8);
     color: $white;
     text-transform: uppercase;
+    @media (min-width: $md) {
+      border-radius: 4px;
+      font-size: font-rem(14);
+      width: 124px;
+      height: 22px;
+    }
+    @media (min-width: $lg) {
+      order: 3;
+      flex-basis: 128px;
+    }
+  }
+  &__price {
+    order: 3;
+    @media (min-width: $lg) {
+      order: 2;
+      flex-basis: 50%;
+    }
   }
 }
 </style>

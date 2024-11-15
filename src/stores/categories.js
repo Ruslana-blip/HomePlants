@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from '@/axios'
+import { useRouter } from 'vue-router'
 
 export const useCategoriesStore = defineStore('categoriesStore', {
   state: () => ({
@@ -22,8 +23,8 @@ export const useCategoriesStore = defineStore('categoriesStore', {
   }),
   actions: {
     async getCategories() {
+      this.loading = true
       try {
-        this.loading = true
         const { data } = await axios.get('plants')
         this.categories = Object.keys(data)
         localStorage.setItem('categories', JSON.stringify(this.categories))
@@ -62,6 +63,7 @@ export const useCategoriesStore = defineStore('categoriesStore', {
       }
     },
     async getPlantById(id) {
+      const router = useRouter()
       this.loading = true
       try {
         const { data } = await axios.get(`plants/id/${id}`)
@@ -69,6 +71,7 @@ export const useCategoriesStore = defineStore('categoriesStore', {
         return data
       } catch (error) {
         console.error(error)
+        router.push({ name: 'TheError' })
       } finally {
         this.loading = false
       }
@@ -111,6 +114,7 @@ export const useCategoriesStore = defineStore('categoriesStore', {
       }
     },
     async getPlantsFilterPrice() {
+      this.loading = true
       try {
         const { data } = await axios.get('plants')
         this.priceFilterArray = []
@@ -118,6 +122,8 @@ export const useCategoriesStore = defineStore('categoriesStore', {
         this.priceFilterArray = plantsArray.filter((plant) => plant.price)
       } catch (error) {
         console.log(error)
+      } finally {
+        this.loading = false
       }
     }
   }

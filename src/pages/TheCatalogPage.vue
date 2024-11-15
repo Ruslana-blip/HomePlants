@@ -9,7 +9,6 @@
   <div class="loader__wrapper" v-else-if="loading">
     <div class="loader"></div>
   </div>
-  <TheError v-else />
 </template>
 
 <script>
@@ -18,14 +17,12 @@ import { useCategoriesStore } from '@/stores/categories'
 import TheNavigation from '@/components/TheNavigation.vue'
 import TheFilter from '@/components/TheFilter.vue'
 import TheCatalogItem from '@/components/TheCatalogItem.vue'
-import TheError from '@/components/TheError.vue'
 export default {
   name: 'TheCatalogPage',
   components: {
     TheNavigation,
     TheFilter,
-    TheCatalogItem,
-    TheError
+    TheCatalogItem
   },
   data() {
     return {

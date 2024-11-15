@@ -88,7 +88,6 @@
   <div class="loader__wrapper" v-else-if="loading">
     <div class="loader"></div>
   </div>
-  <TheError v-else />
 </template>
 
 <script>

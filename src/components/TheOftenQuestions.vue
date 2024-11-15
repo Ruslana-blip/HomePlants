@@ -79,24 +79,36 @@ export default {
 
 <style lang="scss" scoped>
 .oftenQuestions {
-  margin-bottom: 200px;
-  @media (min-width: $xl) {
-    margin-bottom: 280px;
+  margin-bottom: 172px;
+  @media (min-width: $lg) {
+    margin-bottom: 300px;
+  }
+  @media (min-width: $xxl) {
+    margin-bottom: 428px;
   }
   // .oftenQuestions__container
   &__container {
-    max-width: 1448px;
     height: auto;
-  }
-  & h2 {
-    text-transform: uppercase;
-    font-size: font-rem(48);
-    font-weight: 400;
-    margin-bottom: 20px;
+    @media (min-width: $lg) {
+      max-width: 700px;
+    }
     @media (min-width: $xl) {
+      max-width: 1200px;
+    }
+    @media (min-width: $xxl) {
+      max-width: 1448px;
+    }
+    & h2 {
+      text-transform: uppercase;
+      font-size: font-rem(28);
+      font-weight: 400;
       margin-bottom: 40px;
+      @media (min-width: $sm) {
+        font-size: font-rem(34);
+      }
     }
   }
+
   &__item {
     cursor: pointer;
     border-bottom: 2px solid $grey;
@@ -108,10 +120,10 @@ export default {
   &__title {
     display: flex;
     align-items: center;
-    font-size: font-rem(24);
-    height: 93px;
+    font-size: font-rem(20);
+    height: 100px;
     position: relative;
-    padding-right: 20px;
+    padding-right: 30px;
     transition: $time;
     &:hover {
       color: $dark-purple-gray;
@@ -129,15 +141,22 @@ export default {
       width: 24px;
       height: 24px;
     }
+    @media (min-width: $md) {
+      font-size: font-rem(24);
+      height: 93px;
+    }
   }
   &__content {
-    font-size: font-rem(18);
+    font-size: font-rem(16);
     font-family: 'Lato';
     max-width: 840px;
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin: 24px 0 32px 0;
+    @media (min-width: $md) {
+      font-size: font-rem(18);
+    }
   }
 }
 // .v-enter-active,

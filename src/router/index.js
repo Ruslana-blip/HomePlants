@@ -50,6 +50,11 @@ const routes = [
         }
       }
     ]
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'TheError',
+    component: () => import('@/components/TheError.vue')
   }
 ]
 

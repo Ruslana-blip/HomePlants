@@ -9,7 +9,8 @@
     </div>
   </section>
   <TheSlider :title="title" :values="newsPlants" :sliderName="'news'" :slidesPerView="1" />
-  <TheAbout v-if="$route.name === ''" />
+  <!-- <TheAbout v-if="$route.name === ''" /> -->
+  <TheAbout />
   <TheOftenQuestions />
   <TheSliderBlog :title="blogTitle" :slidesPerView="slidesPerView" />
 </template>
@@ -59,63 +60,69 @@ export default {
 .home {
   &__container {
     position: relative;
-    margin-bottom: 200px;
+    margin-bottom: 160px;
     @media (min-width: $md) {
       margin-bottom: 300px;
     }
+    @media (min-width: $lg) {
+      margin-bottom: 428px;
+    }
   }
   & h1 {
-    font-size: font-rem(70);
+    font-size: font-rem(40);
     text-transform: uppercase;
     font-weight: 400;
     text-align: center;
     @media (min-width: $sm) {
-      font-size: font-rem(80);
+      font-size: font-rem(60);
     }
     @media (min-width: $md) {
       font-size: font-rem(100);
     }
-    @media (min-width: $lg) {
+    @media (min-width: $xl) {
+      font-size: font-rem(120);
+    }
+    @media (min-width: $xxl) {
       font-size: font-rem(140);
     }
   }
   // .home__img
   &__img {
-    max-height: 680px;
+    height: 412px;
     margin-top: 20px;
+    @media (min-width: $md) {
+      height: 520px;
+    }
+    @media (min-width: $lg) {
+      height: 600px;
+    }
+    @media (min-width: $xl) {
+      height: 680px;
+    }
     & img {
       width: 100%;
-      min-height: 200px;
+      height: 100%;
       object-fit: cover;
     }
   }
 
   &__btn {
     cursor: pointer;
-    margin-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 40px;
-    width: 100%;
+    min-height: 67px;
+    min-width: 288px;
     background-color: $orange;
     border-radius: 16px;
-    font-size: font-rem(32);
+    font-size: font-rem(24);
     font-family: 'ZenAntique';
     color: $white;
     text-transform: uppercase;
-    @media (min-width: $sm) {
-      margin-top: 0;
-      position: absolute;
-      max-width: 240px;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      bottom: 46px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
     @media (min-width: $md) {
       max-width: 305px;
       height: 78px;
@@ -126,6 +133,10 @@ export default {
       &:active {
         bottom: 48px;
       }
+    }
+    @media (min-width: $lg) {
+      width: 305px;
+      font-size: font-rem(32);
     }
   }
 }

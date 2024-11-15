@@ -215,7 +215,11 @@ export default {
           )
         })
       }
-      this.$emit('plants-filtered', filteredPlants)
+      if (filteredPlants.length === 0) {
+        this.$router.push({ name: 'TheError' }) // Перенаправляємо на сторінку помилки
+      } else {
+        this.$emit('plants-filtered', filteredPlants) // Якщо рослини знайдено, передаємо результат
+      }
     },
     resetFilter() {
       this.min = 0
