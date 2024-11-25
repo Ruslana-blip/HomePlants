@@ -8,7 +8,7 @@
         :loop="true"
         :pagination="{
           type: 'progressbar',
-          el: '.swiper-pagination-progressbar '
+          el: '.swiper-pagination-progressbar-slider '
         }"
         space-between="72"
         :navigation="{
@@ -39,13 +39,11 @@
           }
         }"
       >
-        <swiper-slide v-for="value in values" :key="value.id">
+        <swiper-slide v-for="value in values" :key="value.id" class="slider___wrapp">
           <TheSliderItem :value="value" :new-arrivals="title" />
         </swiper-slide>
       </swiper-container>
-      <div class="swiper-pagination-progressbar" ref="progressBar">
-        <span class="swiper-pagination-progressbar-fill"></span>
-      </div>
+      <div class="swiper-pagination-progressbar-slider" ref="progressBar"></div>
       <div class="slider__navigation">
         <div class="swiper-button-prev prev"></div>
         <div class="swiper-button-next next"></div>
@@ -101,15 +99,22 @@ export default {
   // .slider__container
   &__container {
     position: relative;
-    margin-top: 40px;
+  }
+
+  &__wrapp {
+    min-width: 240px !important;
     @media (min-width: $sm) {
-      margin-top: 75px;
+      min-width: 300px !important;
+    }
+    @media (min-width: $lg) {
+      min-width: 500px !important;
     }
   }
   &__title {
     position: absolute;
-    top: -58px;
-    left: 15px;
+    top: -52px;
+    left: 0px;
+    margin-left: 15px;
     transform: translateY(-50%);
     font-size: font-rem(28);
     font-weight: 400;
@@ -117,7 +122,7 @@ export default {
     color: $secondary-black;
     @media (min-width: $sm) {
       font-size: font-rem(34);
-      top: -64px;
+      top: -60px;
     }
     @media (min-width: $md) {
       top: -98px;
@@ -134,15 +139,15 @@ export default {
   }
 }
 
-.swiper-pagination-progressbar {
+.swiper-pagination-progressbar-slider {
   position: absolute;
-  top: -40px;
+  top: -35px;
   left: 0;
   height: 2px;
   width: 100%;
   background-color: $grey;
   @media (min-width: $md) {
-    top: -75px;
+    top: -72px;
   }
 }
 

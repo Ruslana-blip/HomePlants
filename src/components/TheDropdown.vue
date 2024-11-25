@@ -16,6 +16,14 @@
         </li>
       </ul>
     </nav>
+    <div class="main__langs">
+      <div class="main__lang" :class="{ active: currentLang === 'uk' }" @click="changeLang('uk')">
+        UK
+      </div>
+      <div class="main__lang" :class="{ active: currentLang === 'en' }" @click="changeLang('en')">
+        EN
+      </div>
+    </div>
   </div>
 </template>
 
@@ -34,7 +42,8 @@ export default {
   },
   data() {
     return {
-      categories: []
+      categories: [],
+      currentLang: this.$i18n.locale
     }
   },
   computed: {
@@ -52,7 +61,11 @@ export default {
     }
   },
   methods: {
-    ...mapActions(useCategoriesStore, ['getCategories'])
+    ...mapActions(useCategoriesStore, ['getCategories']),
+    changeLang(lang) {
+      this.$i18n.locale = lang
+      this.currentLang = lang
+    }
   },
   async created() {
     if (!this.isDataExists) {
@@ -87,6 +100,31 @@ export default {
     top: 16px;
     left: 15px;
   }
+  &__langs {
+    display: flex;
+    gap: 24px;
+    margin-left: 16px;
+    margin-bottom: 24px;
+    font-family: 'ZenAntique';
+    @media (min-width: $md) {
+      display: none;
+    }
+  }
+  &__lang {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $grey;
+    height: 50px;
+    width: 51px;
+    border-radius: 4px;
+  }
+}
+.main__lang.active {
+  transition: $time;
+  background-color: $secondary-green;
+  color: $white;
+  border: none;
 }
 .header {
   text-transform: uppercase;
@@ -116,11 +154,18 @@ export default {
 }
 .nav {
   display: flex;
-  justify-content: center;
   align-items: center;
-  margin: 40px 16px 90px 16px;
+  margin: 40px 0 24px 0;
+  padding: 0 16px;
   color: $grey;
   text-transform: uppercase;
+  & ul {
+    width: 100%;
+  }
+  @media (min-width: $md) {
+    margin-bottom: 90px;
+    justify-content: center;
+  }
   @media (min-width: $lg) {
     height: 1018px;
 
@@ -130,7 +175,20 @@ export default {
     }
   }
   &__item {
-    width: 420px;
+    // min-width: 288px;
+
+    &:last-child {
+      border-bottom: 1px solid $dark-purple-gray;
+    }
+
+    // @media (min-width: $md) {
+    //   width: 350px;
+    // }
+    @media (min-width: $lg) {
+      &:last-child {
+        border-bottom: none;
+      }
+    }
   }
   // .nav__item
   &__link {
@@ -140,9 +198,7 @@ export default {
     border-top: 1px solid $dark-purple-gray;
     cursor: pointer;
     transition: $time;
-    &:last-child {
-      border-bottom: 1px solid $dark-purple-gray;
-    }
+
     @media (min-width: $lg) {
       height: 80px;
       padding-left: 40px;

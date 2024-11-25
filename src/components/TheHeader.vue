@@ -115,6 +115,10 @@ export default {
     padding: 12px;
     cursor: pointer;
     border-radius: 16px;
+    display: none;
+    @media (min-width: $md) {
+      display: block;
+    }
     @media (min-width: $lg) {
       transition: background-color $time;
       &:hover {
