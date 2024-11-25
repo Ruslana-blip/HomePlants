@@ -8,7 +8,7 @@
         id="name"
         name="name"
         class="inputs__input"
-        v-model="userName"
+        v-model="user.name"
       />
       <ErrorMessage name="name" class="inputs__error" />
     </div>
@@ -20,7 +20,7 @@
         id="lastName"
         name="lastName"
         class="inputs__input"
-        v-model="lastName"
+        v-model="user.lastName"
       />
       <ErrorMessage name="lastName" class="inputs__error" />
     </div>
@@ -32,7 +32,7 @@
         id="number"
         name="number"
         class="inputs__input"
-        v-model="number"
+        v-model="user.number"
       />
       <ErrorMessage name="number" class="inputs__error" />
     </div>
@@ -44,7 +44,7 @@
         class="inputs__input"
         type="email"
         name="email"
-        v-model="email"
+        v-model="user.email"
       />
       <ErrorMessage name="email" class="inputs__error" />
     </div>
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { Field, ErrorMessage } from 'vee-validate'
+import { Form as VeeForm, Field, ErrorMessage } from 'vee-validate'
 
 import { mapState } from 'pinia'
 import { useUsersStore } from '@/stores/users'
@@ -60,56 +60,25 @@ export default {
   name: 'ThePersonalityInfo',
   components: {
     Field,
-    ErrorMessage
+    ErrorMessage,
+    VeeForm
+  },
+  data() {
+    return {}
   },
   props: {
     width: {
       type: Number
     }
   },
-  data() {
-    return {
-      userActive: { userName: '', lastName: '', email: '', number: '' }
-    }
-  },
+
   computed: {
     ...mapState(useUsersStore, ['user']),
     isDataExists() {
       return Boolean(localStorage.getItem('user'))
-    },
-    userName: {
-      get() {
-        return this.user[0]?.name || ''
-      },
-      set(value) {
-        this.user[0].name = value
-      }
-    },
-    lastName: {
-      get() {
-        return this.user[0]?.lastName || ''
-      },
-      set(value) {
-        this.user[0].lastName = value
-      }
-    },
-    number: {
-      get() {
-        return this.user[0]?.number || ''
-      },
-      set(value) {
-        this.user[0].number = value
-      }
-    },
-    email: {
-      get() {
-        return this.user[0]?.email || ''
-      },
-      set(value) {
-        this.user[0].email = value
-      }
     }
   },
+
   methods: {
     validateEmail(email) {
       if (!email) return "Це поле є обов'язковим"
@@ -119,6 +88,7 @@ export default {
       }
       return true
     },
+
     validateName(name) {
       if (!name) return 'Це поле є обов’язковим.'
       const validNameRegex = /^[A-Za-zА-Яа-яІіЇїЄє'`]+$/

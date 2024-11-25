@@ -22,12 +22,10 @@
       <p>{{ selectedBlog?.conclusion }}</p>
     </div>
   </div>
-  <TheSliderBlog :title="blogTitle" :slidesPerView="slidesPerView" />
+  <TheSliderBlog :title="$t('other-news')" :slidesPerView="slidesPerView" />
 </template>
 
 <script>
-import { mapState, mapActions } from 'pinia'
-import { useBlogsStore } from '@/stores/blogs'
 import TheSliderBlog from '@/components/slider/TheSliderBlog.vue'
 export default {
   name: 'TheBlogSinglePage',
@@ -36,25 +34,47 @@ export default {
   },
   data() {
     return {
-      blogTitle: 'Інші новини',
-      slidesPerView: 3
+      slidesPerView: 3,
+      selectedBlog: null,
+      articles: []
     }
-  },
-  computed: {
-    ...mapState(useBlogsStore, ['selectedBlog'])
-  },
-  mounted() {
-    this.getBlogById(this.$route.params.id)
   },
   watch: {
-    '$route.params.id': 'fetchBlog'
+    '$route.params.id': 'fetchBlog',
+    '$i18n.locale'(newLocale) {
+      this.updateArticle(newLocale)
+    },
+    articles: function (newArticles) {
+      if (newArticles.length) {
+        this.fetchBlog()
+      }
+    }
   },
   methods: {
-    ...mapActions(useBlogsStore, ['getBlogById']),
     fetchBlog() {
       const id = this.$route.params.id
-      this.getBlogById(id)
+      if (id) {
+        this.getBlogById(id)
+      } else {
+        console.error('Невірний ID блогу')
+      }
+    },
+    getBlogById(id) {
+      const blog = this.articles.find((blog) => blog.id == id)
+
+      if (blog) {
+        this.selectedBlog = blog
+      } else {
+        console.error('Блог не знайдено')
+      }
+    },
+    updateArticle(locale) {
+      this.articles = this.$i18n.messages[locale].articles || []
     }
+  },
+  mounted() {
+    this.updateArticle(this.$i18n.locale)
+    this.fetchBlog()
   }
 }
 </script>
@@ -85,6 +105,7 @@ export default {
     & img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
   // .blog__data

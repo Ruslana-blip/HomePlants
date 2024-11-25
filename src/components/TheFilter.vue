@@ -1,7 +1,7 @@
 <template>
   <div class="filter">
     <div class="filter__price">
-      <span class="filter__name">Ціна</span>
+      <span class="filter__name">{{ $t('price') }}</span>
       <div class="filter__columns">
         <div class="filter__column">
           <label for="from">
@@ -31,24 +31,24 @@
       </div>
     </div>
     <div class="filter__type">
-      <span class="filter__name">Типи пропозиції</span>
+      <span class="filter__name">{{ $t('type-offer') }}</span>
       <div class="filter__checkboxes">
         <div class="filter__checkbox checkbox">
           <input type="checkbox" id="sales" v-model="isSales" @change="filterPlants" />
-          <label for="sales">Розпродаж</label>
+          <label for="sales">{{ $t('sale') }}</label>
         </div>
         <div class="filter__checkbox checkbox">
           <input type="checkbox" id="newsPlants" v-model="isNewArrivals" @change="filterPlants" />
-          <label for="newsPlants">Новинки</label>
+          <label for="newsPlants">{{ $t('novelty') }}</label>
         </div>
         <div class="filter__checkbox checkbox">
           <input type="checkbox" id="top" v-model="isTopSales" @change="filterPlants" />
-          <label for="top">Топ розпродажів</label>
+          <label for="top">{{ $t('top-sales') }}</label>
         </div>
       </div>
     </div>
     <div class="filter__categories">
-      <span class="filter__name">Категорії</span>
+      <span class="filter__name">{{ $t('categories') }}</span>
       <div class="filter__checkboxes">
         <div class="filter__checkbox">
           <input
@@ -57,7 +57,7 @@
             v-model="categories.isDecorativeFlorentem"
             @change="filterPlants"
           />
-          <label for="decorativeFlorentem">Декоративно-квітучі</label>
+          <label for="decorativeFlorentem">{{ $t('flow-plants') }}</label>
         </div>
         <div class="filter__checkbox">
           <input
@@ -66,7 +66,7 @@
             v-model="categories.isFoliage"
             @change="filterPlants"
           />
-          <label for="foliage">Декоративно-листяні</label>
+          <label for="foliage">{{ $t('foliage') }}</label>
         </div>
         <div class="filter__checkbox">
           <input
@@ -75,11 +75,11 @@
             v-model="categories.isOrchidaceae"
             @change="filterPlants"
           />
-          <label for="orchidaceae">Орхідеї</label>
+          <label for="orchidaceae">{{ $t('orchids') }}</label>
         </div>
         <div class="filter__checkbox">
           <input type="checkbox" id="bonsai" v-model="categories.isBonsai" @change="filterPlants" />
-          <label for="bonsai">Бонсай</label>
+          <label for="bonsai">{{ $t('bonsai') }}</label>
         </div>
         <div class="filter__checkbox">
           <input
@@ -88,11 +88,11 @@
             v-model="categories.isSucculenta"
             @change="filterPlants"
           />
-          <label for="succulenta">Сукуленти</label>
+          <label for="succulenta">{{ $t('succulents') }}</label>
         </div>
         <div class="filter__checkbox">
           <input type="checkbox" id="citrus" v-model="categories.isCitrus" @change="filterPlants" />
-          <label for="citrus">Цитрусові рослини</label>
+          <label for="citrus">{{ $t('citrus') }}</label>
         </div>
         <div class="filter__checkbox">
           <input
@@ -101,16 +101,16 @@
             v-model="categories.isFlorariums"
             @change="filterPlants"
           />
-          <label for="florariums">Флораріуми</label>
+          <label for="florariums">{{ $t('florariums') }}</label>
         </div>
         <div class="filter__checkbox">
           <input type="checkbox" id="exotic" v-model="categories.isExotic" @change="filterPlants" />
-          <label for="exotic">Eкзотичні рослини</label>
+          <label for="exotic">{{ $t('exotic') }}</label>
         </div>
       </div>
     </div>
     <div class="filter__height">
-      <span class="filter__name">Висота (см)</span>
+      <span class="filter__name">{{ $t('height') }} ({{ $t('sm') }})</span>
       <div class="filter__checkboxes">
         <div class="filter__checkbox">
           <input type="checkbox" id="small" v-model="height.isSmall" @change="filterPlants" />
@@ -126,7 +126,7 @@
         </div>
       </div>
     </div>
-    <button class="filter__btn" @click="resetFilter">Скинути фільтри</button>
+    <button class="filter__btn" @click="resetFilter">{{ $t('reset-filter') }}</button>
   </div>
 </template>
 
@@ -201,7 +201,7 @@ export default {
             (this.categories.isSucculenta && item.category === 'Сукуленти') ||
             (this.categories.isCitrus && item.category === 'Цитрусові рослини') ||
             (this.categories.isFlorariums && item.category === 'Флораріуми') ||
-            (this.categories.isExotic && item.category === 'Екзотичні кімнатні рослини')
+            (this.categories.isExotic && item.category === 'Екзотичні рослини')
           )
         })
       }
@@ -252,28 +252,28 @@ export default {
       this.categories.isFlorariums = false
       this.categories.isExotic = false
       switch (category) {
-        case 'Декоративно-квітучі':
+        case this.$t('flow-plants'):
           this.categories.isDecorativeFlorentem = true
           break
-        case 'Декоративно-листяні':
+        case this.$t('foliage'):
           this.categories.isFoliage = true
           break
-        case 'Орхідеї':
+        case this.$t('orchids'):
           this.categories.isOrchidaceae = true
           break
-        case 'Бонсай':
+        case this.$t('bonsai'):
           this.categories.isBonsai = true
           break
-        case 'Сукуленти':
+        case this.$t('succulents'):
           this.categories.isSucculenta = true
           break
-        case 'Цитрусові рослини':
+        case this.$t('citrus'):
           this.categories.isCitrus = true
           break
-        case 'Флораріуми':
+        case this.$t('florariums'):
           this.categories.isFlorariums = true
           break
-        case 'Екзотичні кімнатні рослини':
+        case this.$t('exotic'):
           this.categories.isExotic = true
           break
         default:
@@ -344,7 +344,7 @@ export default {
     }
     &:nth-child(1) {
       &::before {
-        content: 'Від';
+        content: 'ВІд';
       }
     }
     &:nth-child(2) {

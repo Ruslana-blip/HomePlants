@@ -1,7 +1,7 @@
 <template>
   <section class="slider">
     <div class="slider__container">
-      <h2 class="slider__title">{{ title }}</h2>
+      <h2 class="slider__title">{{ $t('novelty') }}</h2>
       <swiper-container
         ref="sliderName"
         :slides-per-view="slidesPerView"

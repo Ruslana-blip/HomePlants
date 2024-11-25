@@ -1,14 +1,20 @@
 <template>
   <div class="main">
     <header class="header">
-      <div class="header__container">
-        <span>Особистий кабінет</span>
+      <div class="header__cont">
+        <span>{{ $t('personal-account') }}</span>
         <button class="header__close" @click="toggleCabinet"></button>
       </div>
     </header>
-    <TheTabsWrapper class="actions" :width="268" :borderWidth="Number(1)">
-      <TheTab title="Реєстрація" class="actions__title">
-        <VeeForm class="actions__form form" @submit="registerUser">
+    <TheTabsWrapper
+      class="actions"
+      :width="268"
+      :borderWidth="Number(1)"
+      :selectedTab="selectedTab"
+      @updateTab="goToNextTab"
+    >
+      <TheTab :title="$t('registration')" class="actions__title" :selectedTitle="selectedTab === 0">
+        <VeeForm class="actions__form form" @submit="closeAndRegister">
           <div class="form__field">
             <label for="name"></label>
             <Field :rules="validateName" type="text" id="name" name="name" class="form__input" />
@@ -26,10 +32,14 @@
             />
             <ErrorMessage name="number" class="form__error" />
           </div>
-          <TheButtonOrange :title="'Створити акаунт'" :width="400" class="form__btn" />
+          <TheButtonOrange :title="$t('create-account')" :width="400" class="form__btn" />
         </VeeForm>
       </TheTab>
-      <TheTab title="Авторизація" class="actions__title">
+      <TheTab
+        :title="$t('authorization')"
+        class="actions__title"
+        :selectedTitle="selectedTab === 1"
+      >
         <VeeForm class="actions__form form" @submit="handleLogin">
           <div class="form__field">
             <label for="numberUser"></label>
@@ -43,7 +53,7 @@
             />
             <ErrorMessage name="numberUser" class="form__error" />
           </div>
-          <TheButtonOrange :title="'Увійти'" :width="400" class="form__btn" />
+          <TheButtonOrange :title="$t('log-in')" :width="400" class="form__btn" />
         </VeeForm>
       </TheTab>
     </TheTabsWrapper>
@@ -68,6 +78,11 @@ export default {
     ErrorMessage,
     TheButtonOrange
   },
+  data() {
+    return {
+      selectedTab: 0
+    }
+  },
   props: {
     toggleCabinet: {
       type: Function
@@ -91,7 +106,7 @@ export default {
     },
     validateNumber(number) {
       if (!number) return 'Це поле є обов’язковим.'
-      const validPhoneRegex = /^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/
+      const validPhoneRegex = /^\+380\d{9}$/
       if (!validPhoneRegex.test(number)) {
         return 'Номер повинен містити 13 символів'
       }
@@ -99,7 +114,8 @@ export default {
     },
     handleLogin(values) {
       const number = values.numberUser
-      const user = this.usersList.filter((user) => user.number === number)
+      const user = Object.values(this.usersList).find((user) => user.number === number)
+
       if (user) {
         this.setActiveUser(user)
         this.$router.push({ name: 'TheAccountPage' })
@@ -107,6 +123,22 @@ export default {
       } else {
         alert('Користувача не знайдено')
       }
+    },
+    closeAndRegister(values) {
+      const user = {
+        name: values.name,
+        number: values.number
+      }
+      // Додаємо нового користувача
+      if (user) {
+        this.registerUser(user)
+        this.setActiveUser(user)
+        this.$router.push({ name: 'TheAccountPage' })
+        this.toggleCabinet()
+      }
+    },
+    goToNextTab(tabIndex) {
+      this.selectedTab = tabIndex
     }
   }
 }
@@ -115,23 +147,25 @@ export default {
 <style lang="scss" scoped>
 .main {
   position: fixed;
-  top: 12px;
-  right: 0;
+  top: 50%;
+  right: 50%;
   width: 880px;
   height: 800px;
   background-color: $white;
   font-size: font-rem(24);
+  transform: translate(50%, -50%);
 }
 .header {
   border-bottom: 1px solid $grey;
   text-transform: uppercase;
 
   // .header__container
-  &__container {
+  &__cont {
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 60px;
+    padding: 0 16px;
   }
   // .header__close
   &__close {

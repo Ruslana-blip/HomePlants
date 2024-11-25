@@ -7,13 +7,14 @@
         flexDirection: direction,
         borderBottom: borderWidth + 'px solid $grey',
         marginTop: margin + 'px',
-        flexBasic: flex + 'px'
+        flexBasis: flex + 'px',
+        borderBottom: border
       }"
     >
       <li
-        v-for="title in TabTitles"
+        v-for="(title, index) in TabTitles"
         :key="title"
-        :class="{ active: title === selectedTitle }"
+        :class="{ active: index === selectedTab }"
         :style="{
           width: width + 'px',
           fontFamily: font,
@@ -21,7 +22,7 @@
           display: display,
           alignItems: center
         }"
-        @click="selectTab(title)"
+        @click="selectTab(index)"
         class="tabs__item"
       >
         {{ title }}
@@ -32,18 +33,15 @@
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue'
+import { toRefs } from 'vue'
+
 export default {
   name: 'TheTabsWrapper',
-  data() {
-    return {
-      TabTitles: [],
-      state: reactive({
-        selectedTitle: ''
-      })
-    }
-  },
   props: {
+    selectedTab: {
+      type: Number,
+      required: true
+    },
     width: {
       type: Number
     },
@@ -71,35 +69,39 @@ export default {
     },
     flex: {
       type: Number
+    },
+    border: {
+      type: String
     }
   },
-  computed: {
-    selectedTitle() {
-      return this.state.selectedTitle
+  data() {
+    return {
+      TabTitles: []
     }
   },
   mounted() {
     if (this.$slots.default) {
       this.TabTitles = this.$slots.default().map((tab) => tab.props?.title)
-      this.state.selectedTitle = this.TabTitles[0]
+    }
+  },
+  watch: {
+    '$i18n.locale': function () {
+      this.TabTitles = this.$slots.default().map((tab) => tab.props?.title)
     }
   },
   methods: {
-    selectTab(title) {
-      this.state.selectedTitle = title
-    }
-  },
-  provide() {
-    return {
-      ...toRefs(this.state)
+    selectTab(index) {
+      this.$emit('updateTab', index)
     }
   }
 }
 </script>
+
 <style lang="scss" scoped>
 .tabs {
   // .tabs__header
   &__header {
+    border-bottom: 1px solid $grey;
   }
   &__item {
     border: none;

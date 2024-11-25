@@ -8,29 +8,15 @@ export const useUsersStore = defineStore('usersStore', {
       number: '',
       email: ''
     },
-    usersList: JSON.parse(localStorage.getItem('usersList')) || []
+    // Якщо usersList — це об'єкт, перетворіть його в масив
+    usersList: Object.values(JSON.parse(localStorage.getItem('usersList')) || [])
   }),
   getters: {
     isLoggedIn: (state) => !!state.user
   },
   actions: {
-    updateUserName(name) {
-      this.user.name = name
-      this.updateLocalStorage()
-      this.updateUserInList()
-    },
-    updateUserLastName(lastName) {
-      this.user.lastName = lastName
-      this.updateLocalStorage()
-      this.updateUserInList()
-    },
-    updateUserNumber(number) {
-      this.user.number = number
-      this.updateLocalStorage()
-      this.updateUserInList()
-    },
-    updateUserEmail(email) {
-      this.user.email = email
+    updateUserData(key, value) {
+      this.user[key] = value
       this.updateLocalStorage()
       this.updateUserInList()
     },
@@ -43,22 +29,17 @@ export const useUsersStore = defineStore('usersStore', {
         localStorage.setItem('usersList', JSON.stringify(this.usersList))
         this.user = user
         localStorage.setItem('activeUser', JSON.stringify(user))
-        alert('Користувач зареєстрований: ' + user.name)
-      } else {
-        alert('Користувач вже зареєстрований')
       }
     },
     setActiveUser(user) {
-      this.user = user
-      localStorage.setItem('activeUser', JSON.stringify(user))
+      this.user.name = user.name
+      this.user.number = user.number
+      this.user.lastName = user.lastName || ''
+      this.user.email = user.email || ''
+      localStorage.setItem('activeUser', JSON.stringify(this.user))
     },
     isUserInUserList(number) {
-      if (number) {
-        const user = this.usersList.find((user) => user.number === number)
-        console.log(user ? 1 : 0)
-        return !!user
-      }
-      return false
+      return !!this.usersList.find((user) => user.number === number)
     },
     updateUserInList() {
       const index = this.usersList.findIndex((element) => element.number === this.user.number)

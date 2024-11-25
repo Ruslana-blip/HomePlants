@@ -1,5 +1,6 @@
 import '@/assets/scss/main.scss'
 import 'swiper/swiper-bundle.css'
+import i18n from './i18n'
 // Зміна значення змінної
 document.documentElement.style.setProperty('--swiper-theme-color', '#090909') // Новий колір
 
@@ -11,10 +12,9 @@ import router from './router'
 
 import { register } from 'swiper/element/bundle'
 register()
-
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
-
+app.use(i18n)
 app.mount('#app')

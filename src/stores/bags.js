@@ -5,7 +5,7 @@ export const useBagsStore = defineStore('bagsStore', {
     bags: JSON.parse(localStorage.getItem('bags')) || []
   }),
   actions: {
-    addPlantInBag(plantId, productCount = 1, plantImg, plantName, plantPrice) {
+    addPlantInBag(plantId, productCount = 1, plantImg, plantName, plantPrice, plantNameEn) {
       const existingItem = this.bags.find((item) => item.id === plantId)
       if (existingItem) {
         existingItem.count += productCount
@@ -15,7 +15,8 @@ export const useBagsStore = defineStore('bagsStore', {
           count: productCount,
           img: plantImg,
           name: plantName,
-          price: plantPrice
+          price: plantPrice,
+          nameEN: plantNameEn
         })
       }
       this.updateLocalStorage()
