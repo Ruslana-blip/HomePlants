@@ -110,10 +110,6 @@ export default {
   }
   &__container {
     position: relative;
-    // margin-top: 25px;
-    // @media (min-width: $md) {
-    //   margin-top: 75px;
-    // }
   }
   &__wrapp {
     min-width: 240px !important;
