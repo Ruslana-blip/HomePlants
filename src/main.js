@@ -3,7 +3,9 @@ import 'swiper/swiper-bundle.css'
 import i18n from './i18n'
 // Зміна значення змінної
 document.documentElement.style.setProperty('--swiper-theme-color', '#090909') // Новий колір
-
+document.documentElement.style.setProperty('--swiper-scrollbar-size', '2px')
+document.documentElement.style.setProperty(' --swiper-scrollbar-top', '98px')
+document.documentElement.style.setProperty(' --swiper-scrollbar-left', '0px')
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
