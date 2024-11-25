@@ -8,7 +8,7 @@
         :loop="true"
         :pagination="{
           type: 'progressbar',
-          el: '.swiper-pagination-progressbar-slider '
+          el: '.swiper-pagination-progressbar'
         }"
         space-between="72"
         :navigation="{
@@ -43,7 +43,10 @@
           <TheSliderItem :value="value" :new-arrivals="title" />
         </swiper-slide>
       </swiper-container>
-      <div class="swiper-pagination-progressbar-slider" ref="progressBar"></div>
+      <div
+        class="swiper-pagination-progressbar-slider swiper-pagination-progressbar"
+        ref="progressBar"
+      ></div>
       <div class="slider__navigation">
         <div class="swiper-button-prev prev"></div>
         <div class="swiper-button-next next"></div>
@@ -139,9 +142,9 @@ export default {
   }
 }
 
-.swiper-pagination-progressbar-slider {
+.swiper-pagination-progressbar {
   position: absolute;
-  top: -35px;
+  top: -35px !important;
   left: 0;
   height: 2px;
   width: 100%;
