@@ -7,48 +7,47 @@
         :height="61"
         :margin="80"
         :width="840"
+        :selectedTab="selectedTab"
+        @updateTab="goToNextTab"
       >
-        <TheTab class="tab__wrapp" title="ОФОРМЛЕННЯ ЗАМОВЛЕННЯ" v-show="activeTab === 0">
+        <TheTab class="tab__wrapp" :title="$t('place-order')" :selectedTitle="selectedTab === 0">
           <div class="tab__bags">
-            <h2 class="tab__title">Ваше замовлення</h2>
+            <h2 class="tab__title">{{ $t('your-order') }}</h2>
             <TheBagsItem :bags="bags" class="tab__order" />
             <div class="tab__count">
-              <span>Кількість товару:</span>
-              <span>{{ bags.length }} шт</span>
+              <span>{{ $t('count-products') }}:</span>
+              <span>{{ totalCount }} {{ $t('pcs') }}</span>
             </div>
             <div class="tab__sum">
-              <span>Разом до сплати:</span>
+              <span>{{ $t('total-pay') }}:</span>
               <span>{{ totalSum }} ₴</span>
             </div>
           </div>
           <div class="tab__content">
             <ThePersonalityInfo class="tab__inputs" :width="324" />
             <TheButtonOrange
-              :title="'Продовжити'"
+              :title="$t('continue')"
               :width="280"
               class="tab__btn"
-              @click="goToNextTab"
+              @click="goToNextTab(1)"
             />
           </div>
         </TheTab>
 
-        <TheTab class="tab__item" title="" v-show="activeTab === 1">
+        <TheTab class="tab__item" :title="$t('delivery')" :selectedTitle="selectedTab === 1">
           <div class="tab__pay">
             <div class="tab__heading">
               <div class="tab__img">
                 <img src="@/assets/images/pay/info-circle.svg" alt="icon" title="icon" />
               </div>
-              <span>Оплата</span>
+              <span>{{ $t('pay') }}</span>
             </div>
             <div class="tab__desc">
               <p>
-                На даний момент оплата за товари в нашому інтернет-магазині здійснюється виключно
-                готівкою під час отримання замовлення. Забрати своє замовлення ви можете на одній із
-                трьох точок видачі.
+                {{ $t('pay-p-first') }}
               </p>
               <p>
-                Дякуємо за розуміння! Ми працюємо над тим, щоб незабаром додати інші варіанти оплати
-                для вашої зручності.
+                {{ $t('pay-p-second') }}
               </p>
             </div>
           </div>
@@ -57,27 +56,27 @@
               <img src="@/assets/images/pay/map.png" alt="maps" title="Maps" />
             </div>
             <form class="tab__form form">
-              <h3>Оберіть точку видачі</h3>
+              <h3>{{ $t('choose-point') }}</h3>
 
               <div class="form__radios">
                 <div class="form__input">
                   <input type="radio" name="shops" value="Садова" checked id="Садова" />
-                  <label for="Садова">вул. Садова, 123, м. Вінниця, Україна </label>
+                  <label for="Садова">{{ $t('point-1') }}</label>
                 </div>
 
                 <div class="form__input">
                   <input type="radio" name="shops" value="Сонячний" id="Сонячний" />
-                  <label for="Сонячний">провулок Сонячний, 56, м. Вінниця, Україна </label>
+                  <label for="Сонячний">{{ $t('point-2') }} </label>
                 </div>
 
                 <div class="form__input">
                   <input type="radio" name="shops" value="Квіткова" id="Квіткова" />
-                  <label for="Квіткова">площа Квіткова, 22, м. Вінниця, Україна </label>
+                  <label for="Квіткова">{{ $t('point-3') }} </label>
                 </div>
               </div>
               <TheButtonOrange
                 :width="280"
-                :title="'Підтвердити'"
+                :title="$t('confirm')"
                 class="form__btn"
                 @click.prevent="openPopup"
               />
@@ -127,31 +126,28 @@ export default {
   data() {
     return {
       isVisible: false,
-      activeTab: 0
+      selectedTab: 0
     }
   },
   computed: {
     ...mapState(useBagsStore, ['bags']),
     totalSum() {
       return this.bags.reduce((total, plant) => total + plant.price * plant.count, 0)
+    },
+    totalCount() {
+      return this.bags.reduce((count, plant) => count + plant.count, 0)
     }
   },
   methods: {
     ...mapActions(useBagsStore, ['removePlantWithBag', 'clearBags']),
-    handleSubmit() {
-      const bagsStore = useBagsStore()
-      bagsStore.clearBags()
-      this.$router.push('/')
-      this.closePopup()
-    },
     openPopup() {
       this.isVisible = true
     },
     closePopup() {
       this.isVisible = false
     },
-    goToNextTab() {
-      this.activeTab = 1
+    goToNextTab(tabIndex) {
+      this.selectedTab = tabIndex
     }
   }
 }

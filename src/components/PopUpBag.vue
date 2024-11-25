@@ -1,27 +1,30 @@
 <template>
   <div class="bag" ref="myBag">
     <header class="header">
-      <div class="header__container">
-        <h2>МІЙ КОШИК</h2>
+      <div class="header__cont">
+        <h2>{{ $t('bag') }}</h2>
         <button class="header__close" @click="togglePopUpBag"></button>
       </div>
     </header>
     <TheBagsItem :bags="bags" :togglePopUpBag="togglePopUpBag" />
     <footer class="footer" v-if="bags.length">
-      <div class="footer__container">
+      <div class="footer__cont">
         <div class="footer__sum">
-          <span>Разом до сплати:</span>
+          <span>{{ $t('total-pay') }} :</span>
           <span>{{ totalSum }} ₴</span>
         </div>
         <div class="footer__actions">
-          <RouterLink :to="{ name: 'TheCatalogPage' }" class="footer__next" @click="togglePopUpBag"
-            >продовжити покупки</RouterLink
+          <RouterLink
+            :to="{ name: 'TheCatalogPage' }"
+            class="footer__next"
+            @click="togglePopUpBag"
+            >{{ $t('continue-shop') }}</RouterLink
           >
           <RouterLink
             :to="{ name: 'TheBasketPage' }"
             class="footer__continue"
             @click="togglePopUpBag"
-            >Оформити замовлення</RouterLink
+            >{{ $t('place-order') }}</RouterLink
           >
         </div>
       </div>
@@ -68,7 +71,7 @@ export default {
   background-color: $secondary-white;
   position: fixed;
   width: 880px;
-  height: 76vh;
+  height: 920px;
   z-index: 40;
   top: 20px;
   right: 0;
@@ -80,11 +83,12 @@ export default {
 .header {
   border-bottom: 1px solid $grey;
   // .header__container
-  &__container {
+  &__cont {
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 60px;
+    padding: 0 16px;
 
     & h2 {
       font-size: font-rem(24);
@@ -114,8 +118,9 @@ export default {
 .footer {
   border-top: 1px solid $grey;
   // .footer__container
-  &__container {
+  &__cont {
     height: 168px;
+    padding: 0 16px;
   }
   // .footer__sum
   &__sum {

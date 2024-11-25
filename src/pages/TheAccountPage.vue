@@ -9,9 +9,12 @@
         :height="81"
         :center="'center'"
         :margin="80"
-        :flex="304"
+        :width="304"
+        :selectedTab="selectedTab"
+        @updateTab="goToNextTab"
+        :border="'none'"
       >
-        <TheTab class="account__tab" title="МОЇ ЗАМОВЛЕННЯ">
+        <TheTab class="account__tab" :title="$t('my-order')" :selectedTitle="selectedTab === 0">
           <div class="order" v-if="orders.length">
             <div class="order__wrapp" v-for="order in orders" :key="order.id">
               <div class="order__header">
@@ -28,12 +31,12 @@
                       <span>{{ plant.name }}</span>
                       <span>{{ plant.price * plant.count }} ₴</span>
                     </div>
-                    <span>Кількість: {{ plant.count }} шт</span>
+                    <span>{{ $t('count-products') }}: {{ plant.count }} {{ $t('pcs') }}</span>
                   </div>
                 </div>
               </div>
               <div class="order__footer">
-                <span>Разом до сплати:</span>
+                <span>{{ $t('total-pay') }} :</span>
                 <span>
                   {{ order.plants.reduce((acc, plant) => acc + plant.price * plant.count, 0) }}
                   ₴</span
@@ -41,19 +44,18 @@
               </div>
             </div>
           </div>
-          <div class="empty" v-else>
-            <h2 class="empty__title">Ваша історія покупок порожня</h2>
+          <div class="empty" v-if="!orders.length">
+            <h2 class="empty__title">{{ $t('your-purchase-empty') }}</h2>
             <p class="empty__desc">
-              Ви ще не зробили жодної покупки. Почніть шопінг прямо зараз і заповніть свій список
-              улюбленими товарами!
+              {{ $t('no-porchase') }}
             </p>
 
             <RouterLink :to="{ name: 'TheCatalogPage' }">
-              <TheButtonOrange :width="378" :title="'ПЕРЕЙТИ ДО КАТАЛОГУ'" />
+              <TheButtonOrange :width="378" :title="$t('return-catalog')" />
             </RouterLink>
           </div>
         </TheTab>
-        <TheTab class="account__tab" title="ВПОДОБАНЕ">
+        <TheTab class="account__tab" :title="$t('liked')" :selectedTitle="selectedTab === 1">
           <div v-if="currentPlants.length">
             <TheCatalogItem :showPlants="currentPlants" class="account__liked" />
             <TheNavigation
@@ -64,37 +66,40 @@
             />
           </div>
           <div class="empty" v-else>
-            <h2 class="empty__title">У вас ще немає вподобаних товарів</h2>
+            <h2 class="empty__title">{{ $t('no-liked-plants') }}</h2>
             <p class="empty__desc">
-              Ми оновимо інформацію, як тільки Ви додасте товари, що сподобалися
+              {{ $t('no-likes-plants-p') }}
             </p>
 
             <RouterLink :to="{ name: 'TheCatalogPage' }">
-              <TheButtonOrange :width="378" :title="'ПЕРЕЙТИ ДО КАТАЛОГУ'" />
+              <TheButtonOrange :width="378" :title="$t('return-catalog')" />
             </RouterLink>
           </div>
         </TheTab>
-        <TheTab class="account__tab" title="ОСОБИСТІ ДАНІ">
+        <TheTab
+          class="account__tab"
+          :title="$t('personal-data')"
+          :selectedTitle="selectedTab === 2"
+        >
           <VeeForm class="account__form form" @submit="saveChanges">
-            <ThePersonalityInfo />
-            <TheButtonOrange :title="'зберегти зміни'" :width="310" class="form__btn" />
+            <ThePersonalityInfo @personal-data="handlePersonalData" />
+            <TheButtonOrange :title="$t('save-changes')" :width="310" class="form__btn" />
           </VeeForm>
         </TheTab>
-        <TheTab class="account__tab" title="ВИЙТИ">
+        <TheTab class="account__tab" :title="$t('go-out')" :selectedTitle="selectedTab === 3">
           <div class="empty">
-            <h2 class="empty__title">Ви впевнені, що хочете вийти?</h2>
+            <h2 class="empty__title">{{ $t('sure-exit') }}</h2>
             <p class="empty__desc">
-              Ваші незбережені зміни можуть бути втрачені, і ви не зможете переглянути історію
-              покупок або стежити за замовленнями.
+              {{ $t('unsaved') }}
             </p>
 
             <div class="empty__btns">
               <RouterLink :to="{ name: 'HomePage' }" @click="removeActiveUser">
-                <button class="empty__btn">ВИЙТИ</button></RouterLink
+                <button class="empty__btn">{{ $t('go-out') }}</button></RouterLink
               >
 
               <RouterLink :to="{ name: 'TheCatalogPage' }"
-                ><TheButtonOrange :width="284" :title="'ЗАЛИШИТИСЯ'"
+                ><TheButtonOrange :width="284" :title="$t('stay')"
               /></RouterLink>
             </div>
           </div>
@@ -107,11 +112,6 @@
 <script>
 import TheTabsWrapper from '@/components/tab/TheTabsWrapper.vue'
 import TheTab from '@/components/tab/TheTab.vue'
-import Cactus from '@/assets/images/acoount/кактус.png'
-import Zamiokulkas from '@/assets/images/acoount/Заміокулькас.png'
-import Anthurium from '@/assets/images/acoount/Anthurium.png'
-import Rosemary from '@/assets/images/acoount/Rosemary.png'
-import CalisiaBianca from '@/assets/images/acoount/CalisiaBianca.png'
 
 import TheCatalogItem from '@/components/TheCatalogItem.vue'
 import TheNavigation from '@/components/TheNavigation.vue'
@@ -138,36 +138,25 @@ export default {
 
   data() {
     return {
-      orders: [
-        {
-          idOrder: '0202',
-          data: '12/04/2023',
-          plants: [
-            { id: 0, img: Cactus, name: 'Ехінокактус', price: '150', count: '2' },
-            { id: 1, img: Zamiokulkas, name: 'Заміокулькас', price: '1200', count: '10' },
-            { id: 2, img: Anthurium, name: 'Антуріум Black Queen', price: '620', count: '5' }
-          ]
-        },
-        {
-          idOrder: '0101',
-          data: '10/02/2023',
-          plants: [
-            { id: 3, img: Rosemary, name: 'Розмарин', price: '1200', count: '1' },
-            { id: 4, img: CalisiaBianca, name: 'Калізія Bianca', price: '1800', count: '1' }
-          ]
-        }
-      ],
       liked: [],
-      currentPlants: []
+      currentPlants: [],
+      selectedTab: 0,
+      orders: [],
+      userData: null
     }
   },
   computed: {
     ...mapState(useLikedPlantsStore, ['likedPlants']),
     ...mapState(useCategoriesStore, ['selectedPlant'])
   },
+  watch: {
+    '$i18n.locale'(newLocale) {
+      this.updateOrders(newLocale)
+    }
+  },
   methods: {
     ...mapActions(useCategoriesStore, ['getPlantById']),
-    ...mapActions(useUsersStore, ['removeActiveUser']),
+    ...mapActions(useUsersStore, ['removeActiveUser', 'updateUserData']),
     setFilteredPlants(plants) {
       this.liked = plants
       this.updatePage(1)
@@ -177,12 +166,17 @@ export default {
       const end = start + 9
       this.currentPlants = this.liked.slice(start, end)
     },
+    handlePersonalData(userData) {
+      this.userData = userData
+    },
     saveChanges() {
-      const userStore = useUsersStore()
-      userStore.updateUserName(this.user[0]?.name)
-      userStore.updateUserLastName(this.user[0]?.lastName)
-      userStore.updateUserNumber(this.user[0]?.number)
-      userStore.updateUserEmail(this.user[0]?.email)
+      this.updateUserData()
+    },
+    goToNextTab(tabIndex) {
+      this.selectedTab = tabIndex
+    },
+    updateOrders(locale) {
+      this.orders = this.$i18n.messages[locale].orders || []
     }
   },
   async mounted() {
@@ -194,6 +188,7 @@ export default {
     } catch (error) {
       console.error('Error fetching liked plants:', error)
     }
+    this.updateOrders(this.$i18n.locale)
   }
 }
 </script>

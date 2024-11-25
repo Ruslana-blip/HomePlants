@@ -1,15 +1,16 @@
 <template>
   <div class="main">
     <header class="header">
-      <span>Категорії</span>
+      <span>{{ $t('categories') }}</span>
       <button class="header__close" @click="toggleDropdown"></button>
     </header>
     <nav class="nav">
       <ul>
-        <li v-for="category in categories" :key="category" class="nav__item">
+        <li v-for="category in localizedCategories" :key="category" class="nav__item">
           <RouterLink
             :to="{ name: 'TheCatalogPage', params: { category: category } }"
             @click="toggleDropdown"
+            class="nav__link"
             >{{ category }}</RouterLink
           >
         </li>
@@ -19,9 +20,8 @@
 </template>
 
 <script>
+import { mapActions } from 'pinia'
 import { useCategoriesStore } from '@/stores/categories'
-import { mapActions, mapState } from 'pinia'
-
 export default {
   name: 'TheDropdown',
   props: {
@@ -33,12 +33,22 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      categories: []
+    }
   },
   computed: {
-    ...mapState(useCategoriesStore, ['categories']),
-    isDataExists() {
-      return Boolean(localStorage.getItem('categories'))
+    localizedCategories() {
+      return [
+        this.$t('flow-plants'),
+        this.$t('foliage'),
+        this.$t('orchids'),
+        this.$t('succulents'),
+        this.$t('citrus'),
+        this.$t('exotic'),
+        this.$t('florariums'),
+        this.$t('bonsai')
+      ]
     }
   },
   methods: {
@@ -119,9 +129,11 @@ export default {
       margin-right: 40px;
     }
   }
-
-  // .nav__item
   &__item {
+    width: 420px;
+  }
+  // .nav__item
+  &__link {
     height: 56px;
     display: flex;
     align-items: center;
@@ -134,7 +146,13 @@ export default {
     @media (min-width: $lg) {
       height: 80px;
       padding-left: 40px;
+      border: none;
+      transition: $time;
+      &:last-child {
+        border: none;
+      }
       &:hover {
+        border-top: 2px solid $secondary-black;
         border-bottom: 2px solid $secondary-black;
         color: $secondary-black;
       }

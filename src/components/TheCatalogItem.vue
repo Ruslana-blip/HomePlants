@@ -4,8 +4,8 @@
       <div class="plant__img">
         <img
           :src="Array.isArray(plant.img) ? plant.img[0] : plant.img"
-          :title="plant.name"
-          :alt="plant.name"
+          :title="$i18n.locale === 'uk' ? plant.name : plant.name_en"
+          :alt="$i18n.locale === 'uk' ? plant.name : plant.name_en"
         />
         <div class="actions"><TheLike :plantId="plant.id" /></div>
       </div>
@@ -15,7 +15,7 @@
           :to="{ name: 'TheSinglePlantPage', params: { id: plant.id } }"
           class="plant__name"
         >
-          {{ plant.name }}
+          {{ $i18n.locale === 'uk' ? plant.name : plant.name_en }}
         </RouterLink>
         <div class="plant__main">
           <div v-if="plant.status === 'Розпродаж'">
@@ -25,7 +25,9 @@
           <div v-else>
             <span>{{ plant.price }} ₴</span>
           </div>
-          <span :class="getStatusClass(plant?.status)">{{ plant?.status }}</span>
+          <span :class="getStatusClass(plant?.status)">{{
+            $i18n.locale === 'uk' ? plant.status : plant.status_en
+          }}</span>
         </div>
       </div>
     </li>
@@ -48,6 +50,11 @@ export default {
   },
   computed: {
     ...mapState(useCategoriesStore, ['catalog'])
+  },
+  watch: {
+    '$i18n.locale': function (newLocale) {
+      return newLocale
+    }
   },
   methods: {
     ...mapActions(useCategoriesStore, ['getAllPlants']),

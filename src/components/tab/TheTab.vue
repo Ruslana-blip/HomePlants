@@ -1,5 +1,5 @@
 <template>
-  <div class="tab__content" v-show="title === selectedTitle">
+  <div class="tab__content" v-show="selectedTitle">
     <slot />
   </div>
 </template>
@@ -11,9 +11,12 @@ export default {
     title: {
       type: String,
       required: true
+    },
+    selectedTitle: {
+      type: Boolean,
+      required: true
     }
-  },
-  inject: ['selectedTitle']
+  }
 }
 </script>
 

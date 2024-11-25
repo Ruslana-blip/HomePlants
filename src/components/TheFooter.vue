@@ -3,31 +3,29 @@
     <div class="footer__container">
       <div class="footer__wrapp">
         <span class="footer__logo">КВІТКАРКА</span>
-        <span class="footer__desc"
-          >Наші рослини надихають, наповнюють простір естетикою та затишком.</span
-        >
+        <span class="footer__desc">{{ $t('footer-desc') }}</span>
       </div>
       <div class="footer__items">
         <div class="footer__item">
-          <h3>Отримати допомогу</h3>
+          <h3>{{ $t('footer-help') }}</h3>
           <ul class="footer__list">
-            <li>Доставка та оплата</li>
-            <li>Повернення та обмін</li>
-            <li>Підбір рослини</li>
-            <li>Блог</li>
+            <li>{{ $t('f-pay-del') }}</li>
+            <li>{{ $t('f-return') }}</li>
+            <li>{{ $t('f-selection') }}</li>
+            <li>{{ $t('blog') }}</li>
           </ul>
         </div>
         <div class="footer__item">
-          <h3>Навігація</h3>
+          <h3>{{ $t('footer-navigation') }}</h3>
           <ul class="footer__list">
-            <li>Розпродаж</li>
-            <li>Новинки</li>
-            <li>Топ продажів</li>
-            <li>Каталог</li>
+            <li>{{ $t('sale') }}</li>
+            <li>{{ $t('novelty') }}</li>
+            <li>{{ $t('top-sales') }}</li>
+            <li>{{ $t('catalog') }}</li>
           </ul>
         </div>
         <div class="footer__item">
-          <h3>Контакти</h3>
+          <h3>{{ $t('footer-contact') }}</h3>
           <ul class="footer__list">
             <li>+ 38 086 880 33 22</li>
             <li>+ 38 077 077 00 11</li>
@@ -35,7 +33,7 @@
           </ul>
         </div>
         <div class="footer__item">
-          <h3>Підтримка</h3>
+          <h3>{{ $t('footer-support') }}</h3>
           <ul class="footer__list">
             <li>kvitkarka@gmail.com</li>
             <li>infokvitka@gmail.com</li>
@@ -50,11 +48,11 @@
         <div>
           <img src="@/assets/images/footer/icons_copyright.svg" alt="icon" title="icon" />
         </div>
-        <span>Всі права захищені</span>
+        <span>{{ $t('f-reserved') }}</span>
       </div>
       <div class="polite__items">
-        <span>Умови використання</span>
-        <span>Політика конфіденційності</span>
+        <span>{{ $t('f-terms') }}</span>
+        <span>{{ $t('f-policy') }}</span>
       </div>
     </div>
   </section>

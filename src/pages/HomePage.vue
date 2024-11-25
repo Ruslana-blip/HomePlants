@@ -1,18 +1,20 @@
 <template>
   <section class="home">
     <div class="home__container">
-      <h1>Ваші рослини тут</h1>
+      <h1>{{ $t('title') }}</h1>
       <div class="home__img">
         <img src="@/assets/images/homePage/home.png" alt="Photo plants" title="Photo plants" />
       </div>
-      <RouterLink class="home__btn" :to="{ name: 'TheCatalogPage' }"> Каталог </RouterLink>
+      <RouterLink class="home__btn" :to="{ name: 'TheCatalogPage' }">{{
+        $t('catalog')
+      }}</RouterLink>
     </div>
   </section>
   <TheSlider :title="title" :values="newsPlants" :sliderName="'news'" :slidesPerView="1" />
   <!-- <TheAbout v-if="$route.name === ''" /> -->
   <TheAbout />
   <TheOftenQuestions />
-  <TheSliderBlog :title="blogTitle" :slidesPerView="slidesPerView" />
+  <TheSliderBlog :title="this.$t('blog')" />
 </template>
 
 <script>
@@ -33,14 +35,15 @@ export default {
   },
   data() {
     return {
-      title: 'НОВИНКИ',
-      blogTitle: 'БЛОГ',
-      slidesPerView: 2
+      title: 'НОВИНКИ'
     }
   },
 
   computed: {
     ...mapState(useCategoriesStore, ['newsPlants']),
+    blogTitle() {
+      return this.$t('blog')
+    },
     isDataExists() {
       return Boolean(localStorage.getItem('newsPlants'))
     }

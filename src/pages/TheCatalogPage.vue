@@ -58,6 +58,7 @@ export default {
 .plant {
   // .plant__container
   &__container {
+    margin-top: 100px;
     display: flex;
     flex-direction: row;
     font-family: 'Lato';

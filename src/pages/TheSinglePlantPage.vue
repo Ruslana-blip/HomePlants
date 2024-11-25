@@ -10,7 +10,11 @@
             :class="{ active: selectedImage === index }"
             @click="selectImage(index)"
           >
-            <img :src="img" :alt="selectedPlant?.name" :title="selectedPlant?.name" />
+            <img
+              :src="img"
+              :alt="$i18n.locale === 'uk' ? selectedPlant.name : selectedPlant.name_en"
+              :title="$i18n.locale === 'uk' ? selectedPlant.name : selectedPlant.name_en"
+            />
           </div>
         </div>
         <div class="progressBar" v-if="selectedPlant?.img.length">
@@ -19,15 +23,19 @@
         <div v-if="selectedImage !== null" class="plant__image-active">
           <img
             :src="selectedPlant?.img[selectedImage]"
-            :alt="selectedPlant?.name"
-            :title="selectedPlant?.name"
+            :alt="$i18n.locale === 'uk' ? selectedPlant.name : selectedPlant.name_en"
+            :title="$i18n.locale === 'uk' ? selectedPlant.name : selectedPlant.name_en"
           />
         </div>
         <div class="plant__main">
-          <span :class="getStatusClass(selectedPlant?.status)">{{ selectedPlant?.status }}</span>
-          <span class="plant__name">{{ selectedPlant?.name }}</span>
+          <span :class="getStatusClass(selectedPlant?.status)">{{
+            $i18n.locale === 'uk' ? selectedPlant.status : selectedPlant.status_en
+          }}</span>
+          <span class="plant__name">{{
+            $i18n.locale === 'uk' ? selectedPlant.name : selectedPlant.name_en
+          }}</span>
           <div class="plant__price">
-            Ціна:
+            {{ $t('price') }}:
             <div v-if="selectedPlant?.status === 'Розпродаж'">
               <span class="plant__originalPrice"> {{ selectedPlant?.price }} ₴ </span>
               <span class="plant__salesPrice"> {{ selectedPlant?.price * 0.7 }} ₴ </span>
@@ -36,8 +44,13 @@
               <span>{{ selectedPlant?.price }} ₴</span>
             </div>
           </div>
-          <span class="plant__height"><span>Висота</span>: {{ selectedPlant?.height }} см</span>
-          <span class="plant__category"><span>Категорія:</span> {{ selectedPlant?.category }}</span>
+          <span class="plant__height"
+            ><span>{{ $t('height') }}:</span>: {{ selectedPlant?.height }} {{ $t('sm') }}</span
+          >
+          <span class="plant__category"
+            ><span>{{ $t('category') }}:</span>
+            {{ $i18n.locale === 'uk' ? selectedPlant.category : selectedPlant.category_en }}</span
+          >
           <div class="plant__counter actions">
             <button
               class="actions__decrement"
@@ -51,33 +64,56 @@
               :disabled="currentCount === 10"
             ></button>
           </div>
-          <TheButtonOrange @click="addPlantToBag" :title="titleButton" :width="320" />
+          <TheButtonOrange @click="addPlantToBag" :title="$t('add-bag')" :width="320" />
         </div>
       </div>
       <div v-if="isPopUpVisible" class="plant__overlay">
         <PopUpBag :isPopUpVisible="isPopUpVisible" :togglePopUpBag="togglePopUpBag" />
       </div>
-      <TheTabsWrapper class="tab" :borderWidth="Number(1)">
-        <TheTab title="ХАРАКТЕРИСТИКИ" class="tab__items"
-          ><p class="tab__desc">{{ selectedPlant?.desc }}</p>
-          <p class="tab__desc">{{ selectedPlant?.conditionsСare }}</p></TheTab
+      <TheTabsWrapper
+        class="tab"
+        :borderWidth="Number(1)"
+        :selectedTab="selectedTab"
+        @updateTab="goToNextTab"
+      >
+        <TheTab :title="$t('charac')" class="tab__items" :selectedTitle="selectedTab === 0"
+          ><p class="tab__desc">
+            {{ $i18n.locale === 'uk' ? selectedPlant.desc : selectedPlant.desc_en }}
+          </p>
+          <p class="tab__desc">
+            {{
+              $i18n.locale === 'uk' ? selectedPlant.conditionsСare : selectedPlant.conditionsСare_en
+            }}
+          </p></TheTab
         >
-        <TheTab title="ДОГЛЯД" class="tab__items">
+        <TheTab :title="$t('care')" class="tab__items" :selectedTitle="selectedTab === 1">
           <div class="tab__desc">
-            <span>Тип ґрунту:</span>
-            <p>{{ this.selectedPlant?.soilType }}</p>
+            <span>{{ $t('soil') }}:</span>
+            <p>{{ $i18n.locale === 'uk' ? selectedPlant.soilType : selectedPlant.soilType_en }}</p>
           </div>
           <div class="tab__desc">
-            <span>Світло:</span>
-            <p>{{ this.selectedPlant?.lightRequirement }}</p>
+            <span>{{ $t('light') }}:</span>
+            <p>
+              {{
+                $i18n.locale === 'uk'
+                  ? selectedPlant.lightRequirement
+                  : selectedPlant.lightRequirement_en
+              }}
+            </p>
           </div>
           <div class="tab__desc">
-            <span>Температура:</span>
-            <p>{{ this.selectedPlant?.temperature }}</p>
+            <span>{{ $t('temp') }}:</span>
+            <p>
+              {{ $i18n.locale === 'uk' ? selectedPlant.temperature : selectedPlant.temperature_en }}
+            </p>
           </div>
           <div class="tab__desc">
-            <span>Вологість:</span>
-            <p>{{ this.selectedPlant?.humidityLevel }}</p>
+            <span>{{ $t('soil') }}:</span>
+            <p>
+              {{
+                $i18n.locale === 'uk' ? selectedPlant.humidityLevel : selectedPlant.humidityLevel_en
+              }}
+            </p>
           </div>
         </TheTab>
       </TheTabsWrapper>
@@ -114,10 +150,10 @@ export default {
     return {
       selectedImage: 0,
       title: 'Вам також може сподобатись',
-      titleButton: 'ДОДАТИ В КОШИК',
       isPopUpVisible: false,
       loading: true,
-      currentCount: 1
+      currentCount: 1,
+      selectedTab: 0
     }
   },
   computed: {
@@ -163,7 +199,8 @@ export default {
           this.currentCount,
           this.selectedPlant?.img[0],
           this.selectedPlant.name,
-          this.selectedPlant.price
+          this.selectedPlant.price,
+          this.selectedPlant.name_en
         )
         this.togglePopUpBag()
       }
@@ -179,6 +216,9 @@ export default {
         this.currentCount++
         this.updatePlantCount(this.plantId, this.currentCount)
       }
+    },
+    goToNextTab(tabIndex) {
+      this.selectedTab = tabIndex
     }
   },
   watch: {

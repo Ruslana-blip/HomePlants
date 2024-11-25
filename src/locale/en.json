@@ -1,0 +1,324 @@
+{
+  "title": "Your plants are here",
+  "catalog": "Catalog",
+  "categories": "Categories",
+  "novelty": "Novelty",
+  "sale": "Sale",
+  "top-sales": "Top sellers",
+  "other-news": "Other news",
+  "type-offer": "Offer types",
+  "reset-filter": "Reset filters",
+  "about_title": "About US",
+  "about_p_left": "Our indoor plant shop is about taking care of you and your space. We believe that every plant can bring joy, comfort and harmony to the home. By choosing our plants, you get not just decor, but a living companion that will give you peace and beauty every day.",
+  "about_p_right": "From delicate succulents to elegant palm trees, we will select a plant that will perfectly fit into your home style. We are always ready to help you with advice and care to make your green corner flourish.",
+  "faq": "FQA",
+  "tabs": [
+    {
+      "title": "Is it possible to deliver by mail to another city?",
+      "content": "No, delivery by post to other cities is not provided. You can only pick up your order via pickup from our collection points.",
+      "text": "There are 3 convenient pick-up points in the city where you can pick up your order.",
+      "isOpen": false
+    },
+    {
+      "title": "What payment methods are available?",
+      "content": "Payment is made exclusively in cash upon receipt of the goods at one of our delivery points. Other payment methods are currently not supported..",
+      "isOpen": false
+    },
+    {
+      "title": "Do you provide a warranty on purchased plants?",
+      "content": "Yes, we provide a guarantee for all purchased plants for a period of 2 weeks from the moment of purchase. If there are problems with the plant during this time, we are ready to offer a replacement or refund.",
+      "text": "Also, when buying, you receive recommendations for the care of the plant to provide it with optimal conditions for growth. Our tips will help you avoid typical mistakes and preserve the health of the plant for many years.",
+      "isOpen": false
+    },
+    {
+      "title": "Can the plant be transplanted immediately after purchase?",
+      "content": "We do not recommend transplanting the plant immediately after purchase. After changing the environment, the plant needs time to adapt to new conditions.",
+      "text": "It is optimal to give the plant 1-2 weeks to get used to the new place, after which you can plan a transplant. If the pot is too small or the soil is not suitable, the transplant can be done earlier, but you should be very careful not to damage the root system.",
+      "isOpen": false
+    },
+    {
+      "title": "Do you provide on-site plant care services?",
+      "content": "Yes, we provide on-site plant care services. Our specialists will be happy to help you maintain your plants in a healthy state by carrying out all the necessary procedures: watering, fertilizing, pruning, transplanting and treating plants if necessary.",
+      "text": "We will provide an individual approach to each plant, taking into account its features and needs. This service is convenient for those who want to be sure that their green pets receive professional care even without your constant participation.",
+      "isOpen": false
+    }
+  ],
+  "blog": "Blog",
+  "articles": [
+    {
+      "id": 1,
+      "title": "How to choose a pot for a houseplant",
+      "data": "12/08/2024",
+      "img": "/images/blogs/blog/img_1.png",
+      "header": "Choosing the right pot for a houseplant is not only a matter of aesthetics, but also an important aspect of the health of your green ward. The size, material and even the shape of the pot affect the growth and development of the plant. In this article, we will consider the main criteria that should be considered when choosing a pot.",
+      "subtitles": ["Pot size", "Drainage", "Pot shape", "Aesthetics"],
+      "desc": [
+        [
+          "The size of the pot is a key factor for the health of the plant. If the pot is too small, the root system will not be able to develop, which will lead to a halt in growth or even the death of the plant.",
+          "On the other hand, a pot that is too large can cause moisture stagnation in the soil, which leads to root rot. As a general rule, the new pot should be 2-3 cm larger than the diameter of the root ball."
+        ],
+        [
+          "Drainage holes in the bottom of the pot are a must for most plants. They ensure the outflow of excess water and help prevent root rot. ",
+          "If you choose a decorative pot without drainage, it is worth using it as a planter - put a main pot with drainage holes inside."
+        ],
+        [
+          "The shape of the pot can also affect the growth of the plant. Tall and narrow pots are suitable for plants with a deep root system, such as palms or ficuses.",
+          "Wide and shallow pots are more suitable for succulents or cacti, as they have a superficial root system."
+        ],
+        "Of course, it is also important to choose a pot that will harmonize with the interior of your home. Colors, textures and shapes should complement the overall style of the room and create a pleasant atmosphere."
+      ],
+      "conclusion": "When choosing a pot for a houseplant, you should consider not only the appearance, but also the functionality. A balanced choice will provide the plant with optimal conditions for growth, and you will enjoy the pleasure of contemplating healthy green beauty in your home."
+    },
+    {
+      "id": "2",
+      "title": "Organic fertilizers for indoor plants how to use",
+      "data": "04/09/2024",
+      "img": "/images/blogs/blog/img_2.png",
+      "header": "Indoor plants, like any other, need nutrients for healthy growth and development. One of the best ways to provide them with everything they need is to use organic fertilizers. They not only nourish plants, but also improve the structure of the soil, which contributes to the overall improvement of growing conditions",
+      "subtitles": [
+        "What are organic fertilizers",
+        "Advantages of organic fertilizers",
+        "Common mistakes when using fertilizers",
+        "Monitor the reaction of plants"
+      ],
+      "desc": [
+        "Organic fertilizers are made from natural materials - residues of plant or animal origin, compost, manure, algae, etc. They contain macro- and microelements necessary for plant growth, in a more natural in a form that ensures gradual and prolonged absorption.",
+        [
+          "Organic fertilizers do not contain chemicals, so they are safe for the environment and do not harm plants even if used excessively.",
+          "Organic fertilizers act more slowly, but provide long-term nutrition to plants, as they gradually decompose in the soil."
+        ],
+        [
+          "Many people believe that more fertilizer is better. However, overfeeding can damage the roots and cause plant health problems.",
+          "Some plants need more nutrients, others less. It is always worth considering the individual needs of your green ward."
+        ],
+        "Plants react differently to fertilizers. If you notice a slowdown in growth or other signs of discomfort, it may be worth reducing the amount of fertilizer or trying a different type of organic matter."
+      ],
+      "conclusion": "Organic fertilizers are a great way to ensure healthy growth of indoor plants, improve soil quality and make your plant environment more environmentally friendly. They are safe to use, economical and help achieve long-term results. Take care of your plants correctly using natural fertilizers, and they will respond to you with abundant growth and a bright appearance!"
+    },
+    {
+      "id": "3",
+      "title": "Top 10 Unpretentious Houseplants for Beginners",
+      "data": "18/09/2024",
+      "img": "/images/blogs/blog/img_3.png",
+      "header": "Do you dream of a green oasis in your apartment, but are not sure where to start? Houseplants can decorate your home and improve air quality, as well as create a cozy atmosphere. For beginners, it is important to choose plants that do not require special care and easily adapt to different conditions.",
+      "subtitles": [
+        "Sansevieria (Pike's Tail)",
+        "Spathiphyllum (Women's Happiness)",
+        "Chlorophytum (Green Lily)",
+        "Cactus",
+        "Money Tree",
+        "Zamioculcas",
+        "Peperomia",
+        "Ficus Elastica (Rubber Tree)",
+        "Dracaena",
+        "Common Ivy"
+      ],
+      "desc": [
+        "Sansevieria, also known as 'pike tail', is an ideal plant for busy people. This plant is also known for its purifying properties - it improves indoor air quality.",
+        "Spathiphyllum grows well in shaded corners of the apartment and needs moderate watering. It also purifies the air from harmful substances, making it a great choice for the home or office.",
+        "Chlorophytum is considered one of the most resistant plants, which is difficult to destroy. It can grow even in poorly lit places and does not require frequent watering.",
+        "Cactus tolerates dry air well and requires minimal care, can grow both in bright sun and in partial shade. It is worth watering them only once every few weeks.",
+        "It likes bright diffused light and does not need frequent watering, as it accumulates water in its thick leaves. It is considered a symbol of good luck.",
+        "This plant has shiny green leaves and can withstand almost any conditions. Zamioculcas easily tolerates a lack of sun and can go without water for a long time, which is why it is often recommended for beginners.",
+        "It loves shaded places and needs minimal watering. It can be grown even in small rooms or on windowsills where there is little light.",
+        "It has large, shiny leaves that add a stylish look to the room. Ficus also helps purify the air, making it fresher.",
+        "Dracaena is a great choice for beginners. It tolerates low light and irregular watering. Its narrow, long leaves create an interesting accent in the room, adding plant freshness.",
+        "A climbing plant that easily adapts to different conditions, grows well in both bright and shaded places and does not require complex care. It grows quickly and can beautifully wrap around stands or walls."
+      ],
+      "conclusion": "Choose these plants for your home, and even if you are new to the world of indoor gardening, they will definitely become a wonderful decoration and will not require complicated care."
+    },
+    {
+      "id": "4",
+      "title": "How to Water Indoor Plants Properly",
+      "data": "19/10/2024",
+      "img": "/images/blogs/blog/img_4.png",
+      "header": "Proper watering is one of the most important aspects of caring for indoor plants. Most plants die not from lack, but from excess water, so it is important to know how to provide optimal conditions for their growth. In this article, we will look at the basic rules of watering that will help maintain the health of your indoor plants.",
+      "subtitles": [
+        "Focus on the needs of the plant",
+        "Check the soil before watering",
+        "Use room temperature water",
+        "Monitor the condition of the plant"
+      ],
+      "desc": [
+        "Each plant has its own individual watering needs. Some, such as cacti or succulents, like dry conditions and need very infrequent watering, while others, such as ferns or tropicals plants, love moisture. So the first step is to learn about your plant's specific requirements.",
+        [
+          "Before watering, it is important to check how dry the soil is. You can easily do this with your finger by dipping it 2-3 cm into the soil.",
+          "If it is still moist, the plant does not need watering. If the soil is dry a few centimeters deep, the plant can be watered. This rule is especially important for succulents and cacti."
+        ],
+        [
+          "In the summer, houseplants usually need more water, as they grow more actively in the warm season. ",
+          "In winter, when most plants are dormant, you should reduce the frequency of watering. However, it is important not to forget about them completely, even in winter."
+        ],
+        [
+          "Signs of improper watering are easy to recognize. If the leaves turn yellow and fall off, this may be a signal of excessive watering.",
+          "If the leaves wither or curl, but the soil is dry, the plant lacks moisture. Regular inspection will help you quickly respond to the needs of the plant."
+        ]
+      ],
+      "conclusion": "Proper watering is the basis of caring for indoor plants. By following these simple tips, you will ensure healthy and long-lasting growth for your green pets. The main thing is not to overdo it with watering and always monitor the condition of the soil and the plant itself. Watering should be timely and meet the needs of a specific species."
+    },
+    {
+      "id": "5",
+      "title": "How to choose the perfect place in your home",
+      "data": "01/10/2024",
+      "img": "/images/blogs/blog/img_5.png",
+      "header": "Proper watering is one of the most important aspects of caring for indoor plants. Most plants die not from lack, but from excess water, so it is important to know how to provide optimal conditions for their growth. In this article, we will look at the basic rules of watering that will help maintain the health of your indoor plants.",
+      "subtitles": ["Light: sunny and shaded places", "Temperature", "Humidity", "Interior style"],
+      "desc": [
+        [
+          "Light is the main factor for photosynthesis, so each plant needs to choose a place taking into account its light needs.",
+          "If you are not sure whether your plant is getting enough light, pay attention to its leaves. If it becomes pale and losing color, this may be a sign of a lack of light."
+        ],
+        "The temperature in the room also plays an important role. Most houseplants feel comfortable at a temperature of 18 to 24°C. It is important to avoid sudden changes in temperature and direct drafts, as they can stress the plant.",
+        [
+          "Different plants have different humidity requirements. Tropical plants such as monstera or dracaena like moist air, while succulents and cacti do well in dry conditions.",
+          "If the air in your home is very dry, you can use humidifiers or spray plants with water to maintain optimal humidity."
+        ],
+        "In addition to their functional needs, plants should blend harmoniously into the interior of your home. Tall, sprawling plants can be the main accent of a room, while small green accents can decorate a desk or window sill.",
+        "It is important to avoid places where plants can experience sudden changes in conditions, such as cold drafts from windows or doors, excessive sunlight, or proximity to heaters.",
+        "Different plants have different space needs. For example, tall and sprawling plants need more space, so they are better placed on the floor or in spacious rooms. Small plants can be placed on window sills, shelves, or desks."
+      ],
+      "conclusion": "The right location for your houseplants is key to their long and healthy life. Consider each plant's light, humidity, and temperature needs, as well as the conditions in your home, to create the best environment for your green friend. Choose the perfect location for your plant, and it will delight you with its beauty for many years."
+    },
+    {
+      "id": "6",
+      "title": "Practical tips for caring for plants",
+      "data": "05/10/2024",
+      "img": "/images/blogs/blog/img_6.png",
+      "header": "Taking care of indoor plants can be a real pleasure, but in order for your green pets to be healthy and blooming, it is worth knowing a few practical rules. Regardless of whether you are new to growing plants or already have some experience, these tips will help you ensure the proper care of your indoor plants.",
+      "subtitles": [
+        "Prune dry leaves and flowers",
+        "Regularly ventilate the room",
+        "Monitor the condition of the soil",
+        "Fight pests with natural methods",
+        "Regularly transplant plants",
+        "Monitor the humidity of the air"
+      ],
+      "desc": [
+        "Regular pruning helps maintain a healthy appearance of the plant and stimulates its growth. Remove dry or damaged leaves, as well as faded flowers, so that the plant does not waste energy on them.",
+        "Light and water are important, but do not forget about fresh air. Ventilate the room, but avoid drafts that can harm plants, especially tropical ones. Fresh air flow helps to avoid stagnation of moisture and prevents the occurrence of fungal diseases.",
+        "Over time, the soil can become compacted, which reduces air access to the roots. Regularly loosen the top layer of soil to ensure oxygen access to the root system.",
+        "Regularly inspect the leaves and stems for pests and take action in a timely manner. If you notice pests on your plants (spider mites, aphids), use natural methods of control. ",
+        "Over time, plants extract all the nutrients from the soil, and they become cramped in the old pot. Therefore, transplanting is an important stage of care. If the plant is difficult to transplant, you can simply replace the top layer of soil with fresh.",
+        "Some indoor plants, especially tropical ones (monstera, philodendron), require increased humidity. In winter, when the heating is on, the air becomes drier, and the plants may suffer."
+      ],
+      "conclusion": "Caring for indoor plants is not only watering and fertilizing, but also paying attention to their needs for light, humidity and air. By following these practical tips, you can create the best conditions for your green pets to grow and develop. And most importantly, do not forget to monitor the condition of your plants, because they will always 'tel' you what they need."
+    }
+  ],
+  "read": "Read more",
+  "footer-desc": "Our plants inspire, fill the space with aesthetics and comfort.",
+  "footer-help": "Get help",
+  "footer-navigation": "Navigation",
+  "footer-contact": "Contacts",
+  "footer-support": "Support",
+  "f-pay-del": "Delivery and payment",
+  "f-return": "Returns and exchanges",
+  "f-selection": "Plant selection",
+  "f-reserved": "All rights reserved",
+  "f-terms": "Terms of use",
+  "f-policy": "Privacy Policy",
+  "price": "Price",
+  "height": "Height",
+  "category": "Category",
+  "sm": "sm",
+  "add-bag": "ADD TO CART",
+  "soil": "Soil type",
+  "light": "Light",
+  "temp": "Temperature",
+  "watering": "Watering",
+  "charac": "CHARACTERISTICS",
+  "care": "CARE",
+  "flow-plants": "Ornamental-flowering",
+  "foliage": "Decorative deciduous",
+  "orchids": "Orchids",
+  "succulents": "Succulents",
+  "citrus": "Citrus plants",
+  "exotic": "Exotic plants",
+  "florariums": "Florariums",
+  "bonsai": "Bonsai",
+  "bag": "MY CART",
+  "total-pay": "Total payable",
+  "continue-shop": "Continue shopping",
+  "place-order": "PLACE AN ORDER",
+  "bag-no-products-title": "You have no products added to your cart.",
+  "bag-check-products": "Select products from the catalog to add them to your cart.",
+  "return-catalog": "GO TO CATALOGUE",
+  "personal-account": "Personal account",
+  "registration": "Registration",
+  "authorization": "Authorization",
+  "create-account": "Create an account",
+  "log-in": "Log in",
+  "delivery": "DELIVERY METHOD AND PAYMENT",
+  "your-order": "Your order",
+  "count-products": "Quantity of goods",
+  "pcs": "pcs",
+  "continue": "Continue",
+  "pay": "Payment",
+  "pay-p-first": "Currently, payment for goods in our online store is made exclusivel in cash upon receipt of the order. You can pick up your order at one of three pick-up points",
+  "pay-p-second": "Thank you for your understanding! We are working to add more payment options soon for your convenience.",
+  "choose-point": "Choose a pick-up point",
+  "point-1": "123 Sadova St., Vinnytsia, Ukraine",
+  "point-2": "Sonyachny Lane, 56, Vinnytsia, Ukraine",
+  "point-3": "Kvitkova Square, 22, Vinnytsia, Ukraine",
+  "confirm": "Confirm",
+  "my-order": "MY ORDERS",
+  "orders": [
+    {
+      "idOrder": "0202",
+      "data": "12/04/2023",
+      "plants": [
+        {
+          "id": 0,
+          "img": "/images/acoount/кактус.png",
+          "name": "Echinocactus",
+          "price": "150",
+          "count": "2"
+        },
+        {
+          "id": 1,
+          "img": "/images/acoount/Заміокулькас.png",
+          "name": "Zamiokulkas",
+          "price": "1200",
+          "count": "10"
+        },
+        {
+          "id": 2,
+          "img": "/images/acoount/Anthurium.png",
+          "name": "Anthurium Black Queen",
+          "price": "620",
+          "count": "5"
+        }
+      ]
+    },
+    {
+      "idOrder": "0101",
+      "data": "10/02/2023",
+      "plants": [
+        {
+          "id": "3",
+          "img": "/images/acoount/Rosemary.png",
+          "name": "Rosemary",
+          "price": " 1200",
+          "count": "1"
+        },
+        {
+          "id": "4",
+          "img": "/images/acoount/CalisiaBianca.png",
+          "name": "Calisia Bianca",
+          "price": " 1800",
+          "count": "1"
+        }
+      ]
+    }
+  ],
+  "your-purchase-empty": "Your purchase history is empty.",
+  "no-porchase": "You haven't made any purchases yet. Start shopping now and fill your list with your favorite products!",
+  "liked": "LIKED",
+  "no-liked-plants": "You don't have any favorite products yet.",
+  "no-likes-plants-p": "We will update the information as soon as you add products you like.",
+  "personal-data": "PERSONAL DATA",
+  "save-changes": "save changes",
+  "go-out": "GO OUT",
+  "sure-exit": "Are you sure you want to exit?",
+  "unsaved": "Your unsaved changes may be lost, and you will not be able to view your purchase history or track your orders.",
+  "stay": "STAY"
+}

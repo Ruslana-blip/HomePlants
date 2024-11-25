@@ -3,7 +3,6 @@
     <div class="blog__container">
       <h2 class="blog__title">{{ title }}</h2>
       <swiper-container
-        :slides-per-view="slidesPerView"
         loop="true"
         :pagination="{
           type: 'progressbar',
@@ -50,7 +49,7 @@
               <RouterLink
                 :to="{ name: 'TheBlogSinglePage', params: { id: article.id } }"
                 class="blog__link"
-                >Читати більше</RouterLink
+                >{{ $t('read') }}</RouterLink
               >
             </div>
           </div>
@@ -70,27 +69,32 @@ import 'swiper/scss'
 import 'swiper/scss/navigation'
 import 'swiper/scss/pagination'
 import { register } from 'swiper/element/bundle'
-import { mapState } from 'pinia'
-import { useBlogsStore } from '@/stores/blogs'
 
 export default {
   name: 'TheSliderBlog',
   data() {
-    return {}
+    return {
+      articles: []
+    }
   },
   props: {
     title: {
       type: String
-    },
-    slidesPerView: {
-      type: Number
     }
   },
-  computed: {
-    ...mapState(useBlogsStore, ['articles'])
+  watch: {
+    '$i18n.locale'(newLocale) {
+      this.updateArticles(newLocale)
+    }
+  },
+  methods: {
+    updateArticles(locale) {
+      this.articles = this.$i18n.messages[locale].articles || []
+    }
   },
   mounted() {
     register()
+    this.updateArticles(this.$i18n.locale)
   }
 }
 </script>

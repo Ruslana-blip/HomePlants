@@ -3,19 +3,22 @@
     <div class="plant__img">
       <img
         :src="Array.isArray(value.img) ? value.img[0] : value.img"
-        :alt="value.name"
-        :title="value.name"
+        :alt="$i18n.locale === 'uk' ? value.name : value.name_en"
+        :title="$i18n.locale === 'uk' ? value.name : value.name_en"
       />
     </div>
+
     <div class="plant__info">
       <RouterLink
         :to="{ name: 'TheSinglePlantPage', params: { id: value.id } }"
         class="plant__name"
       >
-        {{ value.name || value.title }}
+        {{ $i18n.locale === 'uk' ? value.name : value.name_en }}
       </RouterLink>
       <span class="plant__price">{{ value?.price || value?.data }} ₴</span>
-      <span class="plant__newArrivals">{{ value?.status }}</span>
+      <span class="plant__newArrivals">{{
+        $i18n.locale === 'uk' ? value.status : value.status_en
+      }}</span>
     </div>
   </div>
 </template>

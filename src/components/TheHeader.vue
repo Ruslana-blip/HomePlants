@@ -5,7 +5,7 @@
         <div class="header__menu">
           <img src="@/assets/images/header/menu.svg" alt="Icon of menu" title="Menu" />
         </div>
-        <span>{{ category }}</span>
+        <span>{{ $t('categories') }}</span>
       </div>
       <div class="header__overlay" v-if="isDropdownOpen">
         <TheDropdown :isDropdownOpen="isDropdownOpen" :toggleDropdown="toggleDropdown" />
@@ -14,22 +14,28 @@
         <RouterLink :to="{ name: 'HomePage' }">КВІТКАРКА </RouterLink>
       </div>
       <div class="header__icons">
+        <span class="header__lang" @click="changeLang('en')" v-if="this.$i18n.locale === 'uk'">
+          UK
+        </span>
+        <span class="header__lang" @click="changeLang('uk')" v-if="this.$i18n.locale === 'en'">
+          EN
+        </span>
         <div class="header__icon" @click="togglePopUpBag">
           <img src="@/assets/images/header/bag.svg" alt="Bag" title="Bag" />
         </div>
         <div v-if="isPopUpVisible" class="header__overlay">
           <PopUpBag :isPopUpVisible="isPopUpVisible" :togglePopUpBag="togglePopUpBag" />
         </div>
-        <div class="header__icon" @click="toggleCabinet">
+        <div class="header__icon" @click="toggleCabinet" v-if="!user.name">
           <img src="@/assets/images/header/user.svg" alt="User profile" title="User profile" />
+        </div>
+        <div>
+          <RouterLink :to="{ name: 'TheAccountPage' }" v-if="user.name">
+            <img src="@/assets/images/header/user_exit.svg" alt="icon" title="icon" />
+          </RouterLink>
         </div>
         <div class="header__overlay" v-if="isCabinetOpen && !this.user.length">
           <TheProfile :isCabinetOpen="isCabinetOpen" :toggleCabinet="toggleCabinet" />
-        </div>
-        <div v-else-if="this.user.length">
-          <RouterLink :to="{ name: 'TheAccountPage' }">
-            <img src="@/assets/images/header/user_exit.svg" alt="icon" title="icon" />
-          </RouterLink>
         </div>
       </div>
     </div>
@@ -55,8 +61,7 @@ export default {
     return {
       isDropdownOpen: false,
       isPopUpVisible: false,
-      isCabinetOpen: false,
-      category: 'Категорії'
+      isCabinetOpen: false
     }
   },
   computed: {
@@ -71,6 +76,9 @@ export default {
     },
     toggleCabinet() {
       this.isCabinetOpen = !this.isCabinetOpen
+    },
+    changeLang(lang) {
+      this.$i18n.locale = lang
     }
   }
 }
@@ -78,8 +86,12 @@ export default {
 
 <style lang="scss" scoped>
 .header {
-  margin-bottom: 20px;
-  padding-top: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: $bg-white;
+  z-index: 10;
   @media (min-width: $md) {
     margin-bottom: 64px;
   }
@@ -90,7 +102,26 @@ export default {
     align-items: center;
     height: 50px;
     @media (min-width: $md) {
-      height: 66px;
+      height: 80px;
+    }
+    @media (min-width: $lg) {
+      height: 130px;
+    }
+  }
+  &__lang {
+    font-family: 'Lato';
+    font-size: font-rem(18);
+    display: inline-block;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 16px;
+    @media (min-width: $lg) {
+      transition: background-color $time;
+      &:hover {
+        background-color: $primary-red-orange;
+
+        color: $white;
+      }
     }
   }
   // .header__categories
@@ -158,6 +189,9 @@ export default {
     @media (min-width: $md) {
       width: 150px;
       height: 50px;
+    }
+    @media (min-width: $xxl) {
+      width: 226px;
     }
   }
   // .header__icon

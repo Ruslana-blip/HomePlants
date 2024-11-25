@@ -1,6 +1,6 @@
 <template>
   <main class="plant">
-    <div class="plant__container">
+    <div class="plant__cont">
       <ul v-if="bags.length">
         <li v-for="plant in bags" :key="plant.id" class="plant__item">
           <div class="plant__image">
@@ -8,7 +8,9 @@
           </div>
           <div class="plant__content">
             <div class="plant__info">
-              <span class="plant__name">{{ plant?.name }}</span>
+              <span class="plant__name">{{
+                $i18n.locale === 'uk' ? plant.name : plant.nameEN
+              }}</span>
               <span class="plant__price">{{ plant.count * plant?.price }} ₴</span>
             </div>
             <TheProductCounter :count="plant.count" :plantId="plant.id" />
@@ -17,10 +19,10 @@
         </li>
       </ul>
       <div class="empty" v-else>
-        <h2 class="empty__title">У вас немає товарів доданих в кошик</h2>
-        <p class="empty__desc">Виберіть товари з каталогу, щоб додати їх у кошик.</p>
+        <h2 class="empty__title">{{ $t('bag-no-products-title') }}</h2>
+        <p class="empty__desc">{{ $t('bag-check-products') }}</p>
         <RouterLink :to="{ name: 'TheCatalogPage' }" @click="togglePopUpBag">
-          <TheButtonOrange :width="378" :title="'ПЕРЕЙТИ ДО КАТАЛОГУ'" />
+          <TheButtonOrange :width="378" :title="$t('return-catalog')" />
         </RouterLink>
       </div>
     </div>
@@ -57,11 +59,12 @@ export default {
   flex: 1 1 auto;
 
   // .plant__container
-  &__container {
+  &__cont {
     margin-top: 16px;
     font-family: 'Lato';
-    height: 500px;
+    max-height: 600px;
     overflow: scroll;
+    padding: 0 16px;
   }
   // .plant__item
   &__item {

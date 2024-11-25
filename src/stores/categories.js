@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import axios from '@/axios'
-import { useRouter } from 'vue-router'
 
 export const useCategoriesStore = defineStore('categoriesStore', {
   state: () => ({
@@ -19,14 +18,19 @@ export const useCategoriesStore = defineStore('categoriesStore', {
     newsPlants: JSON.parse(localStorage.getItem('newsPlants')) || [],
     salesPlants: [],
     topPlants: [],
-    priceFilterArray: []
+    priceFilterArray: [],
+    a: null
   }),
   actions: {
     async getCategories() {
       this.loading = true
       try {
         const { data } = await axios.get('plants')
-        this.categories = Object.keys(data)
+        this.categories = data ? Object.keys(data) : []
+        // this.a = Object.values(data)
+
+        // console.log(this.a)
+
         localStorage.setItem('categories', JSON.stringify(this.categories))
       } catch (error) {
         console.error(error)
@@ -38,14 +42,14 @@ export const useCategoriesStore = defineStore('categoriesStore', {
       this.loading = true
       try {
         const { data } = await axios.get('plants')
-        this.foliage = Object.values(data['Декоративно-листяні'])
-        this.decorativeFlorentem = Object.values(data['Декоративно-квітучі'])
-        this.orchidaceae = Object.values(data['Орхідеї'])
-        this.succulenta = Object.values(data['Сукуленти'])
-        this.citrus = Object.values(data['Цитрусові рослини'])
-        this.exotic = Object.values(data['Екзотичні кімнатні рослини'])
-        this.florariums = Object.values(data['Флораріуми'])
-        this.bonsai = Object.values(data['Бонсай'])
+        this.foliage = Object.values(data['Decorative deciduous'])
+        this.decorativeFlorentem = Object.values(data['Ornamental-flowering'])
+        this.orchidaceae = Object.values(data['Orchids'])
+        this.succulenta = Object.values(data['Succulents'])
+        this.citrus = Object.values(data['Citrus plants'])
+        this.exotic = Object.values(data['Exotic plants'])
+        this.florariums = Object.values(data['Florariums'])
+        this.bonsai = Object.values(data['Bonsai'])
         this.catalog = [
           ...this.foliage,
           ...this.decorativeFlorentem,
@@ -63,7 +67,6 @@ export const useCategoriesStore = defineStore('categoriesStore', {
       }
     },
     async getPlantById(id) {
-      const router = useRouter()
       this.loading = true
       try {
         const { data } = await axios.get(`plants/id/${id}`)
