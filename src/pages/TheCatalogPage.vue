@@ -4,7 +4,7 @@
       <TheCatalogItem :showPlants="currentPlants" class="plant__item" />
       <TheFilter class="plant__filter" @plants-filtered="setFilteredPlants" />
     </div>
-    <TheNavigation @show-page="updatePage" :total-plants="filteredPlants" :cards-per-page="9" />
+    <TheNavigation @show-page="updatePage" :total-plants="filteredPlants" :cards-per-page="12" />
   </div>
   <div class="loader__wrapper" v-else-if="loading">
     <div class="loader"></div>
@@ -42,8 +42,8 @@ export default {
       this.updatePage(1)
     },
     updatePage(page) {
-      const start = (page - 1) * 9
-      const end = start + 9
+      const start = (page - 1) * 12
+      const end = start + 12
       this.currentPlants = this.filteredPlants.slice(start, end)
     }
   },
@@ -58,23 +58,43 @@ export default {
 .plant {
   // .plant__container
   &__container {
-    margin-top: 100px;
-    display: flex;
-    flex-direction: row;
-    font-family: 'Lato';
-    font-size: font-rem(18);
-    margin-bottom: 80px;
+    @media (min-width: $lg) {
+      margin-top: 100px;
+      display: flex;
+      flex-direction: row;
+      font-family: 'Lato';
+      font-size: font-rem(18);
+      margin-bottom: 80px;
+      gap: 72px;
+    }
   }
   &__item {
-    flex: 1 1 auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 72px;
-    justify-content: center;
+    gap: 24px;
+    @media (min-width: $md) {
+      gap: 40px;
+    }
+
+    @media (min-width: $lg) {
+      flex: 1 1 auto;
+      gap: 60px;
+      justify-content: center;
+    }
+    @media (min-width: $xl) {
+      gap: 72px;
+    }
   }
   // .plant__filter
   &__filter {
-    flex: 0 0 384px;
+    display: none;
+    @media (min-width: $lg) {
+      display: block;
+      flex: 1 1 250px;
+    }
+    @media (min-width: $xl) {
+      flex: 1 1 384px;
+    }
   }
 }
 

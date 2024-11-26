@@ -295,13 +295,22 @@ export default {
 <style lang="scss" scoped>
 .filter {
   background-color: $ligth-green;
-  padding: 40px 32px;
-  border-radius: 24px;
+  padding: 20px 16px;
+  font-size: font-rem(18);
   max-height: max-content;
+  @media (min-width: $xxl) {
+    font-size: font-rem(20);
+    padding: 40px 32px;
+    border-radius: 24px;
+  }
+
   &__name {
-    font-size: font-rem(24);
+    font-size: font-rem(20);
     font-weight: 500;
     font-family: 'Lato';
+    @media (min-width: $xxl) {
+      font-size: font-rem(24);
+    }
   }
   // .filter__columns
   &__columns {
@@ -324,10 +333,15 @@ export default {
   // .filter__column
   &__column {
     border-radius: 4px;
-    height: 56px;
-    width: 146px;
+    height: 40px;
+    width: 110px;
     outline: 1px solid $secondary-grey;
     position: relative;
+    @media (min-width: $xxl) {
+      height: 56px;
+      width: 146px;
+    }
+
     &::before {
       position: absolute;
       top: 0;
@@ -371,7 +385,10 @@ export default {
   }
   // .filter__checkbox
   &__checkbox {
-    font-size: font-rem(20);
+    @media (min-width: $xxl) {
+      font-size: font-rem(20);
+    }
+
     position: relative;
     &:not(:last-child) {
       margin-bottom: 12px;
@@ -422,8 +439,11 @@ export default {
     height: 52px;
     border-radius: 8px;
     border: 1px solid $primary-red-orange;
-    font-size: font-rem(24);
+    font-size: font-rem(20);
     color: $primary-red-orange;
+    @media (min-width: $xl) {
+      font-size: font-rem(24);
+    }
   }
 }
 .checkbox {

@@ -88,20 +88,48 @@ export default {
 // .plant
 .plant {
   &__name {
+    font-size: font-rem(14);
     transition: $time;
     &:hover {
       color: $dark-purple-gray;
     }
+    @media (min-width: $md) {
+      font-size: font-rem(18);
+    }
   }
   // .plant__item
   &__item {
-    flex: 0 1 384px;
+    flex: 1 1 146px;
+    @media (min-width: $sm) {
+      // flex: 1 1 260;
+      flex: 1 1 calc(50% - 24px);
+    }
+    @media (min-width: $lg) {
+      // flex: 1 1 250px;
+      flex: 1 1 calc(50% - 40px);
+    }
+    @media (min-width: $xl) {
+      flex: 1 1 calc(33.33% - 72px);
+    }
+    @media (min-width: 1920px) {
+      flex: 0 1 384px;
+    }
   }
   // .plant__img
   &__img {
-    max-width: 384px;
-    height: 480px;
     position: relative;
+    height: 240px;
+    @media (min-width: $sm) {
+      width: 100%;
+      height: 380px;
+    }
+    @media (min-width: $md) {
+      width: 100%;
+      height: 480px;
+    }
+    @media (min-width: $xxl) {
+      max-width: 384px;
+    }
 
     &:hover {
       .plant__actions {
@@ -124,11 +152,15 @@ export default {
   }
 
   &__content {
-    margin-top: 16px;
-    height: 64px;
+    margin-top: 12px;
+    height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media (min-width: $md) {
+      height: 64px;
+      margin-top: 16px;
+    }
   }
   // .plant__main
   &__main {
@@ -138,16 +170,25 @@ export default {
   &__newPlants,
   &__sales,
   &__top {
-    width: 128px;
-    height: 26px;
+    width: 70px;
+    font-family: 'Lato';
+    height: 18px;
+    font-size: font-rem(8);
+    border-radius: 4px;
     text-transform: uppercase;
     color: $white;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Lato';
-    font-size: font-rem(14);
-    border-radius: 4px;
+    @media (min-width: $sm) {
+      width: 90px;
+      height: 20px;
+    }
+    @media (min-width: $md) {
+      font-size: font-rem(14);
+      width: 128px;
+      height: 26px;
+    }
   }
   &__newPlants {
     background-color: $green;
@@ -161,15 +202,21 @@ export default {
 
   // .plant__originalPrice
   &__originalPrice {
+    font-size: font-rem(14);
     color: $secondary-black;
     text-decoration: line-through;
-    margin-right: 16px;
+    @media (min-width: $md) {
+      margin-right: 16px;
+    }
   }
   // .plant__salesPrice
   &__salesPrice {
+    font-size: font-rem(14);
     color: $secondary-red;
     font-family: 'Roboto';
     font-weight: 700;
+    @media (min-width: $md) {
+    }
   }
 }
 </style>

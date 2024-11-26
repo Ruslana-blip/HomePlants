@@ -1,5 +1,5 @@
 <template>
-  <div class="pagination" v-if="getCountPages > 1">
+  <div class="pagination__container" v-if="getCountPages > 1">
     <ul class="pagination__list">
       <li
         v-for="page in getCountPages"
@@ -56,28 +56,49 @@ export default {
 
 <style lang="scss" scoped>
 .pagination {
-  margin: 0 0 136px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 79px;
+  @media (min-width: $lg) {
+  }
+  @media (min-width: $xl) {
+    height: 79px;
+    margin: 0 0 136px 0;
+  }
   // .pagination__list
   &__list {
+    width: 173px;
+    margin: 24px auto 36px auto;
     display: flex;
     justify-content: space-around;
-    gap: 16px;
-    font-size: font-rem(24);
+    gap: 12px;
+    font-size: font-rem(14);
     color: $grey;
-    margin: 16px;
+    @media (min-width: $md) {
+      font-size: font-rem(18);
+      gap: 16px;
+    }
+    @media (min-width: $lg) {
+      font-size: font-rem(20);
+    }
+    @media (min-width: $xl) {
+      font-size: font-rem(24);
+      margin: 16px auto;
+    }
   }
   // .pagination__item
   &__item {
     cursor: pointer;
     font-weight: 700;
-    padding: 10px;
-    height: 48px;
-    width: 48px;
+    padding: 0;
+    width: 27px;
+    height: 18px;
     text-align: center;
+    @media (min-width: $lg) {
+      padding: 10px;
+      height: 48px;
+      width: 48px;
+    }
   }
   &__item.active {
     position: relative;
@@ -86,10 +107,13 @@ export default {
 
     &::before {
       position: absolute;
-      top: 12px;
+      top: 0;
       right: 65%;
       content: '/0';
       z-index: 3;
+      @media (min-width: $lg) {
+        top: 12px;
+      }
     }
   }
 }

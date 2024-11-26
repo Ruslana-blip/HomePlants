@@ -91,6 +91,8 @@ export default {
     width: 70%;
   }
   @media (min-width: $lg) {
+    display: flex;
+    flex-direction: column;
     font-size: font-rem(24);
     width: 50%;
   }
@@ -166,8 +168,10 @@ export default {
   @media (min-width: $md) {
     margin-bottom: 90px;
     justify-content: center;
+    align-self: center;
   }
   @media (min-width: $lg) {
+    width: 420px;
     height: 1018px;
 
     & ul {
@@ -181,10 +185,6 @@ export default {
     &:last-child {
       border-bottom: 1px solid $dark-purple-gray;
     }
-
-    // @media (min-width: $md) {
-    //   width: 350px;
-    // }
     @media (min-width: $lg) {
       &:last-child {
         border-bottom: none;
