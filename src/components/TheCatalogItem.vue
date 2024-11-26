@@ -7,7 +7,16 @@
           :title="$i18n.locale === 'uk' ? plant.name : plant.name_en"
           :alt="$i18n.locale === 'uk' ? plant.name : plant.name_en"
         />
-        <div class="actions"><TheLike :plantId="plant.id" /></div>
+
+        <TheLike
+          :plantId="plant.id"
+          :plantImg="plant?.img[0]"
+          :plantName="plant?.name"
+          :plantPrice="plant?.price"
+          :plantNameEn="plant?.name_en"
+          class="plant__actions"
+        />
+        <ThePinned :plantId="plant.id" />
       </div>
 
       <div class="plant__content">
@@ -38,10 +47,12 @@
 import { mapActions, mapState } from 'pinia'
 import { useCategoriesStore } from '@/stores/categories'
 import TheLike from './TheLike.vue'
+import ThePinned from './ThePinned.vue'
 export default {
   name: 'TheCatalogItem',
   components: {
-    TheLike
+    TheLike,
+    ThePinned
   },
   props: {
     showPlants: {
@@ -92,11 +103,23 @@ export default {
     height: 480px;
     position: relative;
 
+    &:hover {
+      .plant__actions {
+        opacity: 1;
+      }
+    }
     & img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 16px;
+    }
+  }
+
+  &__actions {
+    @media (min-width: $md) {
+      transition: $time;
+      opacity: 0;
     }
   }
 

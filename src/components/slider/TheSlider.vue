@@ -21,7 +21,8 @@
             spaceBetween: 24
           },
           440: {
-            slidesPerView: 2
+            slidesPerView: 2,
+            spaceBetween: 24
           },
           576: {
             slidesPerView: 2.3,
@@ -32,14 +33,16 @@
             spaceBetween: 72
           },
           1050: {
-            slidesPerView: 3
+            slidesPerView: 3,
+            spaceBetween: 72
           },
           1400: {
-            slidesPerView: 4
+            slidesPerView: 4,
+            spaceBetween: 72
           }
         }"
       >
-        <swiper-slide v-for="value in values" :key="value.id" class="slider___wrapp">
+        <swiper-slide v-for="value in values" :key="value.id" class="slider__wrapp">
           <TheSliderItem :value="value" :new-arrivals="title" />
         </swiper-slide>
       </swiper-container>
@@ -99,20 +102,30 @@ export default {
   @media (min-width: $xl) {
     margin-bottom: 280px;
   }
+  &__wrapp {
+    width: 160px;
+    @media (min-width: $sm) {
+      width: 240px;
+    }
+    @media (min-width: $md) {
+      font-size: font-rem(18);
+      width: 280px;
+    }
+    @media (min-width: $xl) {
+      width: 320px;
+    }
+    @media (min-width: $xxl) {
+      width: 384px;
+    }
+  }
   // .slider__container
   &__container {
     position: relative;
+    transform: none;
+    perspective: none;
+    overflow: visible;
   }
 
-  &__wrapp {
-    min-width: 240px !important;
-    @media (min-width: $sm) {
-      min-width: 300px !important;
-    }
-    @media (min-width: $lg) {
-      min-width: 500px !important;
-    }
-  }
   &__title {
     position: absolute;
     top: -52px;

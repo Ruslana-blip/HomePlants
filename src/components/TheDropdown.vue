@@ -111,6 +111,7 @@ export default {
     }
   }
   &__lang {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;

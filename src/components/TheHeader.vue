@@ -92,7 +92,7 @@ export default {
   width: 100%;
   background-color: $bg-white;
   z-index: 10;
-  background-color: red;
+
   @media (min-width: $md) {
     margin-bottom: 64px;
   }

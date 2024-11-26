@@ -6,6 +6,15 @@
         :alt="$i18n.locale === 'uk' ? value.name : value.name_en"
         :title="$i18n.locale === 'uk' ? value.name : value.name_en"
       />
+      <TheLike
+        :plantId="value.id"
+        :plantImg="value?.img[0]"
+        :plantName="value?.name"
+        :plantPrice="value?.price"
+        :plantNameEn="value?.name_en"
+        class="plant__actions"
+      />
+      <ThePinned :plantId="value.id" />
     </div>
 
     <div class="plant__info">
@@ -24,9 +33,15 @@
 </template>
 
 <script>
+import TheLike from '../TheLike.vue'
+import ThePinned from '../ThePinned.vue'
+
 export default {
   name: 'TheSliderItem',
-
+  components: {
+    TheLike,
+    ThePinned
+  },
   props: {
     value: {
       type: Object,
@@ -45,28 +60,28 @@ export default {
   font-size: font-rem(16);
   color: $secondary-black;
   margin-right: 0;
-  min-width: 160px;
-  @media (min-width: $sm) {
-    min-width: 240px;
-  }
-  @media (min-width: $md) {
-    font-size: font-rem(18);
-  }
-  @media (min-width: $xxl) {
-    width: 384px;
-  }
+
   // .plant__img
   &__img {
-    height: 200px;
+    height: 244px;
+    width: 100%;
+    position: relative;
+    &:hover {
+      .plant__actions {
+        opacity: 1;
+      }
+    }
+    @media (min-width: $sm) {
+      height: 310px;
+      width: 100%;
+    }
     @media (min-width: $md) {
       height: 380px;
     }
     @media (min-width: $lg) {
       height: 480px;
-      width: 100%;
     }
     @media (min-width: $xxl) {
-      width: 384px;
       height: 480px;
     }
     & img {
@@ -77,6 +92,13 @@ export default {
       @media (min-width: $md) {
         border-radius: 16px;
       }
+    }
+  }
+
+  &__actions {
+    @media (min-width: $md) {
+      transition: $time;
+      opacity: 0;
     }
   }
 
