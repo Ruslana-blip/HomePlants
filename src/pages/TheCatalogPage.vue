@@ -56,13 +56,15 @@ export default {
 
 <style lang="scss" scoped>
 .plant {
+  margin-top: 14px;
   // .plant__container
   &__container {
+    display: flex;
+    font-family: 'Lato';
+    flex-direction: column-reverse;
     @media (min-width: $lg) {
       margin-top: 100px;
-      display: flex;
       flex-direction: row;
-      font-family: 'Lato';
       font-size: font-rem(18);
       margin-bottom: 80px;
       gap: 72px;
@@ -87,9 +89,7 @@ export default {
   }
   // .plant__filter
   &__filter {
-    display: none;
     @media (min-width: $lg) {
-      display: block;
       flex: 1 1 250px;
     }
     @media (min-width: $xl) {

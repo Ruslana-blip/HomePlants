@@ -71,9 +71,9 @@ export default {
   background-color: $secondary-white;
   position: fixed;
   width: 880px;
-  height: 920px;
+  height: 100vh;
   z-index: 40;
-  top: 20px;
+  top: 0;
   right: 0;
   display: flex;
   flex-direction: column;

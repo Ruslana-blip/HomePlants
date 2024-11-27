@@ -62,8 +62,8 @@ export default {
   &__cont {
     margin-top: 16px;
     font-family: 'Lato';
-    max-height: 600px;
     overflow: scroll;
+    max-height: calc(100vh - 228px);
     padding: 0 16px;
   }
   // .plant__item

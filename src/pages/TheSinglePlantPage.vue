@@ -64,7 +64,7 @@
               :disabled="currentCount === 10"
             ></button>
           </div>
-          <TheButtonOrange @click="addPlantToBag" :title="$t('add-bag')" :width="320" />
+          <TheButtonOrange @click="addPlantToBag" :title="$t('add-bag')" class="actions__btn" />
         </div>
       </div>
       <div v-if="isPopUpVisible" class="plant__overlay">
@@ -244,25 +244,56 @@ export default {
 .plant {
   // .plant__container
   &__container {
-    max-width: 1448px;
-    margin-bottom: 280px;
+    margin-bottom: 160px;
+    @media (min-width: $md) {
+      margin-bottom: 220px;
+    }
+    @media (min-width: $lg) {
+      max-width: 1448px;
+      margin-bottom: 280px;
+    }
   }
   // .plant__content
   &__content {
     display: flex;
-    margin-bottom: 120px;
+    flex-direction: column;
+    @media (min-width: $md) {
+      flex-wrap: wrap;
+      flex-direction: row;
+      margin-bottom: 80px;
+    }
+    @media (min-width: $lg) {
+      flex-wrap: nowrap;
+    }
+    @media (min-width: $xl) {
+      margin-bottom: 120px;
+    }
+  }
+  &__images {
+    display: flex;
+    height: 70px;
+    gap: 16px;
+    order: 2;
+    padding: 0 60px;
+    @media (min-width: $sm) {
+      height: 140px;
+    }
+    @media (min-width: $md) {
+      gap: 12px;
+      order: 1;
+      flex-direction: column;
+      padding: 0;
+      flex: 0 1 144px;
+      height: auto;
+    }
   }
   // .plant__image
   &__image {
-    flex: 0 0 144px;
-    width: 144px;
-    height: 220px;
+    height: 100%;
+    flex: 1 1 calc(33.33% - 16px);
     border-radius: 8px;
     opacity: 0.5;
     transition: $time;
-    &:not(:last-child) {
-      margin-bottom: 12px;
-    }
     & img {
       width: 100%;
       height: 100%;
@@ -271,6 +302,16 @@ export default {
     }
     &.active {
       opacity: 1;
+    }
+    @media (min-width: $md) {
+      // flex: 0 1 144px;
+      // width: 144px;
+      height: 220px;
+    }
+    @media (min-width: $lg) {
+      &:not(:last-child) {
+        margin-bottom: 12px;
+      }
     }
   }
   &__overlay {
@@ -284,30 +325,60 @@ export default {
   }
   // .plant__image-active
   &__image-active {
-    flex: 1 0 672px;
-    height: 684px;
-    margin-left: 40px;
+    order: 1;
+    height: 360px;
+    margin-bottom: 12px;
+    @media (min-width: $sm) {
+      padding: 0 30px;
+      height: 520px;
+    }
+
     & img {
       height: 100%;
       width: 100%;
-      border-radius: 24px;
+      border-radius: 16px;
       object-fit: cover;
+      @media (min-width: $lg) {
+        border-radius: 24px;
+      }
+    }
+    @media (min-width: $md) {
+      padding: 0;
+      margin-left: 10px;
+      order: 3;
+      flex: 1 0 400px;
+      height: 584px;
+    }
+    @media (min-width: $lg) {
+      flex: 1 1 672px;
+      margin-left: 40px;
     }
   }
   // .plant__main
   &__main {
-    flex: 0 0 456px;
-    margin-left: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: $secondary-black;
+    order: 4;
+    margin-top: 24px;
+    margin-bottom: 48px;
+    @media (min-width: $md) {
+      margin: 0 0 0 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    @media (min-width: $lg) {
+      margin-left: 40px;
+    }
+    @media (min-width: $xl) {
+      flex: 0 1 456px;
+      margin-left: 120px;
+      color: $secondary-black;
+    }
   }
   &__newPlants,
   &__sales,
   &__top {
-    width: 128px;
-    height: 26px;
+    width: 96px;
+    height: 22px;
     text-transform: uppercase;
     font-weight: 600;
     color: $white;
@@ -315,9 +386,19 @@ export default {
     justify-content: center;
     align-items: center;
     font-family: 'Lato';
-    font-size: font-rem(14);
+    font-size: font-rem(10);
     border-radius: 4px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
+    @media (min-width: $sm) {
+      font-size: font-rem(12);
+      width: 110px;
+      height: 26px;
+    }
+    @media (min-width: $lg) {
+      width: 128px;
+      font-size: font-rem(14);
+      margin-bottom: 16px;
+    }
   }
   &__newPlants {
     background-color: $green;
@@ -330,24 +411,41 @@ export default {
   }
   // .plant__name
   &__name {
-    font-size: font-rem(32);
+    display: inline-block;
     font-weight: 400;
-    margin-bottom: 40px;
+    margin-bottom: 16px;
+    font-size: font-rem(24);
+    @media (min-width: $sm) {
+      margin-bottom: 30px;
+      font-size: font-rem(28);
+    }
+    @media (min-width: $lg) {
+      font-size: font-rem(32);
+      margin-bottom: 40px;
+    }
   }
   // .plant__price
   &__height,
   &__category {
+    display: block;
     font-family: 'Lato';
-    font-size: font-rem(20);
+    font-size: font-rem(18);
 
     & span {
       margin-right: 8px;
       font-weight: 600;
+      font-size: font-rem(20);
     }
   }
   &__price,
   &__height {
-    margin-bottom: 24px;
+    margin-bottom: 12px;
+    @media (min-width: $sm) {
+      margin-bottom: 20px;
+    }
+    @media (min-width: $lg) {
+      margin-bottom: 24px;
+    }
   }
   &__price {
     display: flex;
@@ -356,7 +454,13 @@ export default {
     font-size: font-rem(20);
   }
   &__counter {
-    margin: 80px 0;
+    margin: 20px 0;
+    @media (min-width: $sm) {
+      margin: 40px 0;
+    }
+    @media (min-width: $lg) {
+      margin: 80px 0;
+    }
   }
   &__originalPrice {
     color: $secondary-black;
@@ -371,30 +475,50 @@ export default {
   }
 }
 .progressBar {
-  flex: 0 0 1px;
-  margin-left: 16px;
-  width: 1px;
-  background-color: $grey;
-  height: 684px;
-  overflow: hidden;
+  order: 3;
+  display: none;
+  @media (min-width: $md) {
+    display: block;
+    order: 2;
+    flex: 0 0 1px;
+    margin-left: 16px;
+    width: 1px;
+    background-color: $grey;
+    height: auto;
+    overflow: hidden;
+  }
+  // @media (min-width: $lg) {
+  //   height: 684px;
+  // }
+
   // .progressBar__width
   &__width {
-    width: 100%;
-    height: 0;
-    background-color: $main-black;
-    transition: height 0.3s ease;
+    @media (min-width: $md) {
+      width: 100%;
+      height: 0;
+      background-color: $main-black;
+      transition: height 0.3s ease;
+    }
   }
 }
 
 .tab {
   // .tab__items
   &__items {
-    margin-top: 72px;
+    margin-top: 12px;
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    row-gap: 40px;
-    column-gap: 72px;
+    flex-direction: column;
+    gap: 12px;
+    font-size: font-rem(16);
+    text-align: justify;
+    @media (min-width: $lg) {
+      margin-top: 72px;
+
+      flex-wrap: wrap;
+      flex-direction: row;
+      row-gap: 40px;
+      column-gap: 72px;
+    }
   }
   // .tab__desc
   &__desc {
@@ -403,11 +527,17 @@ export default {
       text-transform: uppercase;
     }
     & span {
-      font-size: font-rem(24);
       color: $secondary-black;
       font-weight: 700;
       display: block;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
+      font-size: font-rem(20);
+    }
+    @media (min-width: $lg) {
+      & span {
+        font-size: font-rem(24);
+        margin-bottom: 16px;
+      }
     }
   }
 }
@@ -438,6 +568,13 @@ export default {
   padding: 8px;
   border: 1px solid $grey;
   border-radius: 8px;
+
+  &__btn {
+    width: 100%;
+    @media (min-width: $lg) {
+      width: 320px;
+    }
+  }
   &__decrement,
   &__increment {
     border: none;

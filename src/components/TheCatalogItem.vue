@@ -108,11 +108,8 @@ export default {
       // flex: 1 1 250px;
       flex: 1 1 calc(50% - 40px);
     }
-    @media (min-width: $xl) {
-      flex: 1 1 calc(33.33% - 72px);
-    }
-    @media (min-width: 1920px) {
-      flex: 0 1 384px;
+    @media (min-width: $xxl) {
+      flex: 1 0 calc(33.33% - 72px);
     }
   }
   // .plant__img

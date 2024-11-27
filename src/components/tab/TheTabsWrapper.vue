@@ -101,20 +101,34 @@ export default {
 .tabs {
   // .tabs__header
   &__header {
-    border-bottom: 1px solid $grey;
+    @media (min-width: $md) {
+      border-bottom: 1px solid $grey;
+    }
   }
   &__item {
-    border: none;
-    font-size: font-rem(24);
-    font-weight: 400;
-    font-family: 'Georgia';
-    color: $grey;
+    color: $secondary-black;
+    border-bottom: 1px solid $grey;
+    border-top: 1px solid $grey;
+    font-size: font-rem(16);
+    padding: 16px 0 16px 12px;
     transition: $time;
-    display: inline-block;
-    padding: 16px 12px;
+    &:last-child {
+      border-top: none;
+    }
     &.active {
       color: $secondary-black;
-      border-bottom: 1px solid #000;
+      border-bottom-color: $secondary-black;
+    }
+    @media (min-width: $md) {
+      border: none;
+      font-size: font-rem(24);
+      font-weight: 400;
+      font-family: 'Georgia';
+      color: $grey;
+      transition: $time;
+      display: inline-block;
+      padding: 16px 12px;
+      border-bottom: 1px solid transparent;
     }
   }
 }
