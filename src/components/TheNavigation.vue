@@ -69,7 +69,6 @@ export default {
 
   // .pagination__list
   &__list {
-    width: 173px;
     display: flex;
     justify-content: space-around;
     align-items: center;

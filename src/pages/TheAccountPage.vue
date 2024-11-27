@@ -3,16 +3,13 @@
     <div class="account__container">
       <TheTabsWrapper
         class="account__tabs"
-        :display="'flex'"
-        :direction="'column'"
         :font="'Lato'"
-        :height="81"
         :center="'center'"
-        :margin="80"
-        :width="304"
         :selectedTab="selectedTab"
         @updateTab="goToNextTab"
         :border="'none'"
+        :display="'flex'"
+        :margin="40"
       >
         <TheTab class="account__tab" :title="$t('my-order')" :selectedTitle="selectedTab === 0">
           <div class="order" v-if="orders.length">
@@ -59,7 +56,7 @@
           <div v-if="currentPlants.length">
             <TheCatalogItem :showPlants="currentPlants" class="account__liked" />
             <TheNavigation
-              :cards-per-page="9"
+              :cards-per-page="12"
               @show-page="updatePage"
               :total-plants="liked"
               class="account__navigation"
@@ -72,7 +69,7 @@
             </p>
 
             <RouterLink :to="{ name: 'TheCatalogPage' }">
-              <TheButtonOrange :width="378" :title="$t('return-catalog')" />
+              <TheButtonOrange :width="273" :title="$t('return-catalog')" />
             </RouterLink>
           </div>
         </TheTab>
@@ -162,8 +159,8 @@ export default {
       this.updatePage(1)
     },
     updatePage(page) {
-      const start = (page - 1) * 9
-      const end = start + 9
+      const start = (page - 1) * 12
+      const end = start + 12
       this.currentPlants = this.liked.slice(start, end)
     },
     handlePersonalData(userData) {
@@ -195,30 +192,65 @@ export default {
 
 <style lang="scss" scoped>
 .account {
-  margin-bottom: 280px;
-
+  margin-bottom: 80px;
+  @media (min-width: $md) {
+    margin-top: 80px;
+    margin-bottom: 140px;
+  }
+  @media (min-width: $xl) {
+    margin-bottom: 280px;
+  }
   // .account__tabs
   &__tabs {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+    @media (min-width: $md) {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      gap: 60px;
+    }
+    @media (min-width: $xl) {
+      gap: 150px;
+    }
   }
   // .account__tab
   &__tab {
-    flex: 1 1 auto;
+    @media (min-width: $md) {
+      flex: 1 1 auto;
+    }
   }
   .order {
+    margin-top: 40px;
     border-top: 2px solid $dark-purple-gray;
     border-bottom: 2px solid $dark-purple-gray;
-    margin-right: 152px;
+    @media (min-width: $md) {
+      margin-top: 0;
+    }
+
     // .order__wrapp
     &__wrapp {
-      width: 1296px;
-      padding: 40px;
-      font-size: font-rem(18);
+      font-size: font-rem(16);
       font-family: 'Lato';
+      padding: 15px 0;
       &:nth-child(1) {
         border-bottom: 2px solid $dark-purple-gray;
+      }
+      &:not(:last-child) {
+        margin-bottom: 40px;
+      }
+      @media (min-width: $md) {
+        padding: 40px;
+        font-size: font-rem(18);
+        &:not(:last-child) {
+          margin-bottom: 0;
+        }
+      }
+      @media (min-width: $lg) {
+        padding: 15px;
+        margin: 32px 0;
+      }
+      @media (min-width: 1920px) {
+        padding: 40px;
+        width: 1296px;
       }
     }
     // .order__header
@@ -228,19 +260,31 @@ export default {
     }
     // .order__main
     &__main {
-      margin: 32px 0;
-      padding: 16px;
       border-bottom: 1px solid $grey;
+      @media (min-width: $xl) {
+        padding: 16px;
+      }
     }
     // .order__item
     &__item {
       display: flex;
-      gap: 12px;
+      gap: 6px;
+      height: 120px;
+      padding: 12px;
+
+      @media (min-width: $md) {
+        height: auto;
+        padding: 16px;
+        gap: 12px;
+      }
     }
     // .order__img
     &__img {
-      flex: 1 1 120px;
-      height: 120px;
+      flex: 0 0 100px;
+      @media (min-width: $xl) {
+        flex: 1 1 120px;
+        height: 120px;
+      }
       & img {
         width: 100%;
         height: 100%;
@@ -251,49 +295,75 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      flex: 1 1 calc(100% - 132px);
+      flex: 1 1 auto;
       & span {
         align-self: end;
+      }
+      @media (min-width: $md) {
+        flex: 1 1 calc(100% - 132px);
       }
     }
     &__info {
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
+      align-self: start;
+      & span {
+        align-self: start;
+      }
+      @media (min-width: $sm) {
+        width: 100%;
+        flex-direction: row;
+        & span {
+          align-self: end;
+        }
+      }
     }
     // .order__footer
     &__footer {
       display: flex;
       justify-content: space-between;
+      margin: 20px 0;
       & span:nth-child(2) {
         font-weight: 700;
       }
     }
   }
   &__liked {
-    flex: 1 1 100%;
+    margin-top: 40px;
+    // flex: 1 1 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 72px;
-    justify-content: center;
+    gap: 24px;
+    // justify-content: center;
+    @media (min-width: $lg) {
+      margin-top: 0;
+      gap: 72px;
+    }
   }
 
   &__navigation {
-    margin-top: 80px;
+    @media (min-width: $sm) {
+      margin-top: 80px;
+    }
   }
 }
 
 .form {
-  margin-top: 80px;
-  width: 840px;
+  margin-top: 40px;
   display: flex;
-  flex-direction: column;
-  height: 100%;
   justify-content: center;
   align-items: center;
-  margin: 80px auto 0 auto;
+  flex-direction: column;
+  @media (min-width: $xxl) {
+    width: 840px;
+    height: 100%;
+    margin: 80px auto 0 auto;
+  }
 }
 
 .empty {
+  margin-top: 60px;
   width: 100%;
   height: 100%;
   display: flex;
@@ -301,17 +371,42 @@ export default {
   justify-content: center;
   align-items: center;
   font-family: 'Lato';
+  @media (min-width: $lg) {
+    margin-top: 0;
+  }
   // .empty__title
   &__title {
-    font-size: font-rem(24);
+    font-size: font-rem(20);
     font-weight: 700;
+    text-align: center;
+
+    @media (min-width: $md) {
+      font-size: font-rem(24);
+    }
   }
   // .empty__desc
   &__desc {
-    font-size: font-rem(18);
-    margin: 16px 0 48px 0;
-    width: 536px;
+    margin: 14px 0 24px;
+    font-size: font-rem(16);
     text-align: center;
+    @media (min-width: $sm) {
+      margin: 16px 0 48px 0;
+      font-size: font-rem(18);
+    }
+    @media (min-width: $lg) {
+      width: 536px;
+    }
+  }
+
+  &__btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    @media (min-width: $xl) {
+      gap: 48px;
+    }
   }
   &__btn {
     width: 284px;
@@ -321,15 +416,17 @@ export default {
     border-radius: 16px;
     font-size: font-rem(18);
     color: $primary-red-orange;
-    margin-right: 48px;
     font-family: 'ZenAntique';
-    transition: $time;
-    &:hover {
-      background-color: $primary-red-orange;
-      color: $white;
-    }
-    &:active {
-      bottom: 48px;
+    text-transform: uppercase;
+    @media (min-width: $lg) {
+      transition: $time;
+      &:hover {
+        background-color: $primary-red-orange;
+        color: $white;
+      }
+      &:active {
+        bottom: 48px;
+      }
     }
   }
 }

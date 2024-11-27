@@ -114,11 +114,16 @@ export default {
 .inputs {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 72px;
-  row-gap: 46px;
-  margin-bottom: 46px;
+  column-gap: 35px;
+  row-gap: 24px;
+  margin-bottom: 30px;
+  @media (min-width: $lg) {
+    column-gap: 72px;
+    row-gap: 46px;
+    margin-bottom: 46px;
+  }
   &__field {
-    width: 384px;
+    width: 100%;
     border-radius: 4px;
     height: 56px;
     outline: 1px solid $secondary-grey;
@@ -126,6 +131,16 @@ export default {
     font-family: 'Roboto';
     color: $dark-purple-gray;
     padding: 4px 0 4px 16px;
+    @media (min-width: $sm) {
+      flex: 1 1 calc(50% - 35px);
+    }
+    @media (min-width: $md) {
+      margin: 0 auto;
+      flex: 0 1 80%;
+    }
+    @media (min-width: $lg) {
+      flex: 1 0 calc(50% - 72px);
+    }
 
     &::before {
       position: absolute;

@@ -32,7 +32,7 @@
             <span class="plant__salesPrice"> {{ plant.price * 0.7 }} ₴ </span>
           </div>
           <div v-else>
-            <span>{{ plant.price }} ₴</span>
+            <span class="plant__price-original">{{ plant.price }} ₴</span>
           </div>
           <span :class="getStatusClass(plant?.status)">{{
             $i18n.locale === 'uk' ? plant.status : plant.status_en
@@ -150,7 +150,7 @@ export default {
 
   &__content {
     margin-top: 12px;
-    height: 40px;
+    min-height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -164,6 +164,7 @@ export default {
     display: flex;
     justify-content: space-between;
   }
+
   &__newPlants,
   &__sales,
   &__top {
@@ -177,6 +178,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    align-self: end;
     @media (min-width: $sm) {
       width: 90px;
       height: 20px;
@@ -198,13 +200,17 @@ export default {
   }
 
   // .plant__originalPrice
-  &__originalPrice {
+  &__originalPrice,
+  &__price-original {
     font-size: font-rem(14);
     color: $secondary-black;
-    text-decoration: line-through;
+
     @media (min-width: $md) {
       margin-right: 16px;
     }
+  }
+  &__originalPric {
+    text-decoration: line-through;
   }
   // .plant__salesPrice
   &__salesPrice {
