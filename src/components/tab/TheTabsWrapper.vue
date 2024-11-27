@@ -104,10 +104,11 @@ export default {
     border-bottom: 1px solid $grey;
   }
   &__item {
+    text-transform: uppercase;
     display: inline-block;
     color: $secondary-black;
     border-bottom: 1px solid transparent;
-    font-size: font-rem(16);
+    font-size: font-rem(18);
     padding: 8px 18px;
     transition: $time;
     &:last-child {

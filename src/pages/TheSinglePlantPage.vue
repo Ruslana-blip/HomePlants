@@ -348,10 +348,13 @@ export default {
       order: 3;
       flex: 1 0 400px;
       height: 584px;
+      margin-bottom: 0;
     }
+
     @media (min-width: $lg) {
       flex: 1 1 672px;
       margin-left: 40px;
+      height: 672px;
     }
   }
   // .plant__main
@@ -434,7 +437,6 @@ export default {
 
     & span {
       margin-right: 8px;
-      font-weight: 600;
       font-size: font-rem(20);
     }
   }

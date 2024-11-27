@@ -57,7 +57,6 @@ export default {
 <style lang="scss" scoped>
 .plant {
   flex: 1 1 auto;
-
   // .plant__container
   &__cont {
     margin-top: 16px;
@@ -68,15 +67,29 @@ export default {
   }
   // .plant__item
   &__item {
+    height: 132px;
     display: flex;
     padding: 16px 0 16px 16px;
     border-bottom: 1px solid $grey;
+    @media (min-width: $sm) {
+      height: 152px;
+    }
   }
   // .plant__image
   &__image {
-    width: 120px;
-    height: 120px;
-    margin-right: 12px;
+    flex: 0 0 80px;
+    width: 80px;
+    height: 100%;
+    margin-right: 10px;
+    @media (min-width: $sm) {
+      flex: 0 0 100px;
+      height: 100px;
+    }
+    @media (min-width: $md) {
+      flex: 0 0 120px;
+      width: 120px;
+      margin-right: 12px;
+    }
     & img {
       width: 100%;
       height: 100%;
@@ -87,43 +100,64 @@ export default {
   // .plant__content
   &__content {
     flex: 1 1 auto;
-    height: 120px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @media (min-width: $sm) {
+      height: 120px;
+    }
   }
   // .plant__info
   &__info {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
   }
 
   // .plant__name
   &__name {
-    font-size: font-rem(20);
+    font-size: font-rem(16);
+    @media (min-width: $sm) {
+      font-size: font-rem(18);
+    }
+    @media (min-width: $md) {
+      font-size: font-rem(20);
+    }
   }
   // .plant__price
   &__price {
-    font-size: font-rem(18);
+    font-size: font-rem(14);
+    @media (min-width: $sm) {
+      font-size: font-rem(18);
+    }
   }
 
   // .plant__remove
   &__remove {
-    flex: 0 0 46px;
+    flex: 0 0 10px;
     width: 18px;
     height: 18px;
     position: relative;
     border: none;
+    @media (min-width: $sm) {
+      flex: 0 0 46px;
+    }
     // transform: translateX(-100%);
     &::before {
       position: absolute;
       content: '';
-      top: 104px;
-      right: 16px;
+      top: 78px;
+      right: 8px;
       background-image: url('@/assets/images/popup/remove.svg');
       width: 18px;
       height: 18px;
+      @media (min-width: $sm) {
+        top: 104px;
+        right: 16px;
+      }
     }
   }
 }

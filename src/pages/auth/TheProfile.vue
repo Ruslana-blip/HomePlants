@@ -2,7 +2,7 @@
   <div class="main">
     <header class="header">
       <div class="header__cont">
-        <span>{{ $t('personal-account') }}</span>
+        <h2>{{ $t('personal-account') }}</h2>
         <button class="header__close" @click="toggleCabinet"></button>
       </div>
     </header>
@@ -173,6 +173,14 @@ export default {
   border-bottom: 1px solid $grey;
   text-transform: uppercase;
 
+  & h2 {
+    font-size: font-rem(18);
+    color: $secondary-black;
+    font-weight: 400;
+    @media (min-width: $lg) {
+      font-size: font-rem(24);
+    }
+  }
   // .header__container
   &__cont {
     display: flex;

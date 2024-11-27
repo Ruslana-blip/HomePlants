@@ -65,12 +65,17 @@ export default {
 <style lang="scss" scoped>
 .actions {
   display: flex;
-  width: 160px;
-  height: 48px;
+  width: 100px;
+  height: 38px;
   justify-content: space-between;
-  padding: 8px;
+  padding: 4px;
   border: 1px solid $grey;
   border-radius: 8px;
+  @media (min-width: $lg) {
+    width: 160px;
+    height: 48px;
+    padding: 8px;
+  }
   &__decrement,
   &__increment {
     border: none;
