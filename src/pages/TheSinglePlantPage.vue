@@ -360,12 +360,13 @@ export default {
     margin-top: 24px;
     margin-bottom: 48px;
     @media (min-width: $md) {
-      margin: 0 0 0 20px;
+      margin: 24px 0 0 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
     @media (min-width: $lg) {
+      margin-top: 0;
       margin-left: 40px;
     }
     @media (min-width: $xl) {
@@ -448,10 +449,13 @@ export default {
     }
   }
   &__price {
+    font-weight: 600;
     display: flex;
     gap: 8px;
-    font-weight: 600;
     font-size: font-rem(20);
+    & span {
+      font-weight: 400;
+    }
   }
   &__counter {
     margin: 20px 0;
@@ -513,7 +517,6 @@ export default {
     text-align: justify;
     @media (min-width: $lg) {
       margin-top: 72px;
-
       flex-wrap: wrap;
       flex-direction: row;
       row-gap: 40px;

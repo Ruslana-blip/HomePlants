@@ -57,6 +57,7 @@ export default {
 <style lang="scss" scoped>
 .plant {
   margin-top: 14px;
+  margin-bottom: 24px;
   // .plant__container
   &__container {
     display: flex;

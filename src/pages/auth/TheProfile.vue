@@ -8,7 +8,6 @@
     </header>
     <TheTabsWrapper
       class="actions"
-      :width="268"
       :borderWidth="Number(1)"
       :selectedTab="selectedTab"
       @updateTab="goToNextTab"
@@ -32,7 +31,7 @@
             />
             <ErrorMessage name="number" class="form__error" />
           </div>
-          <TheButtonOrange :title="$t('create-account')" :width="400" class="form__btn" />
+          <TheButtonOrange :title="$t('create-account')" class="form__btn" />
         </VeeForm>
       </TheTab>
       <TheTab
@@ -53,7 +52,7 @@
             />
             <ErrorMessage name="numberUser" class="form__error" />
           </div>
-          <TheButtonOrange :title="$t('log-in')" :width="400" class="form__btn" />
+          <TheButtonOrange :title="$t('log-in')" class="form__btn" />
         </VeeForm>
       </TheTab>
     </TheTabsWrapper>
@@ -147,13 +146,28 @@ export default {
 <style lang="scss" scoped>
 .main {
   position: fixed;
-  top: 50%;
-  right: 50%;
-  width: 880px;
-  height: 800px;
-  background-color: $white;
-  font-size: font-rem(24);
-  transform: translate(50%, -50%);
+  top: 0;
+  right: 0;
+  background-color: $bg-white;
+  width: 100vw;
+  height: 100vh;
+  @media (min-width: $md) {
+    top: 50%;
+    right: 50%;
+    width: 500px;
+    height: 600px;
+    background-color: $white;
+    font-size: font-rem(24);
+    transform: translate(50%, -50%);
+  }
+  @media (min-width: $lg) {
+    width: 680px;
+    height: 700px;
+  }
+  @media (min-width: $xxl) {
+    width: 880px;
+    height: 800px;
+  }
 }
 .header {
   border-bottom: 1px solid $grey;
@@ -187,12 +201,16 @@ export default {
 }
 
 .actions {
-  height: 600px;
-  width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 76px;
+  height: calc(100% - 60px);
+  @media (min-width: $xl) {
+    height: 600px;
+    width: 100%;
+  }
+
   // .actions__title
   &__title {
     display: flex;
@@ -200,15 +218,20 @@ export default {
   }
   // .actions__form
   &__form {
-    margin-top: 72px;
+    margin-top: 40px;
+
+    @media (min-width: $lg) {
+      margin-top: 72px;
+    }
   }
 }
 .form {
   // .form__field
   &__field {
+    margin: 0 auto;
     border-radius: 4px;
     height: 56px;
-    width: 400px;
+    width: 320px;
     outline: 1px solid $secondary-grey;
     position: relative;
     font-family: 'Roboto';
@@ -224,10 +247,13 @@ export default {
       z-index: 3;
       font-size: font-rem(12);
       transform: translateY(-50%);
-      background-color: $white;
+      background-color: $bg-white;
       display: flex;
       align-items: center;
       justify-content: center;
+      @media (min-width: $md) {
+        background-color: $white;
+      }
     }
     &:nth-child(1) {
       &::before {
@@ -241,13 +267,20 @@ export default {
         width: 102px;
       }
     }
+    @media (min-width: $lg) {
+      width: 400px;
+    }
   }
   // .form__input
   &__input {
+    background-color: $bg-white;
     width: 100%;
     height: 100%;
-    background-color: $white;
+
     border: none;
+    @media (min-width: $md) {
+      background-color: $white;
+    }
   }
   // .form__error
   &__error {
@@ -257,7 +290,12 @@ export default {
     justify-content: end;
   }
   &__btn {
-    margin-top: 16px;
+    margin-top: 32px;
+    width: 320px;
+    @media (min-width: $lg) {
+      margin-top: 16px;
+      width: 400px;
+    }
   }
 }
 </style>

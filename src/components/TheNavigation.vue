@@ -1,17 +1,15 @@
 <template>
   <div class="pagination" v-if="getCountPages > 1">
-    <div class="pagination__container">
-      <ul class="pagination__list">
-        <li
-          v-for="page in getCountPages"
-          :key="page"
-          @click="showPage(page)"
-          :class="['pagination__item', { active: currentPage === page }]"
-        >
-          {{ page }}
-        </li>
-      </ul>
-    </div>
+    <ul class="pagination__list">
+      <li
+        v-for="page in getCountPages"
+        :key="page"
+        @click="showPage(page)"
+        :class="['pagination__item', { active: currentPage === page }]"
+      >
+        {{ page }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -61,16 +59,14 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  &__container {
-    margin-top: 24px;
-    margin-bottom: 36px;
-    align-self: center;
-    @media (min-width: $xl) {
-      height: 79px;
-      margin: 0 0 136px 0;
-    }
+  margin-top: 24px;
+  margin-bottom: 36px;
+  align-self: center;
+  @media (min-width: $xl) {
+    height: 79px;
+    margin: 0 0 136px 0;
   }
+
   // .pagination__list
   &__list {
     width: 173px;

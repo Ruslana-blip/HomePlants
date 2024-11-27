@@ -101,16 +101,14 @@ export default {
 .tabs {
   // .tabs__header
   &__header {
-    @media (min-width: $md) {
-      border-bottom: 1px solid $grey;
-    }
+    border-bottom: 1px solid $grey;
   }
   &__item {
+    display: inline-block;
     color: $secondary-black;
-    border-bottom: 1px solid $grey;
-    border-top: 1px solid $grey;
+    border-bottom: 1px solid transparent;
     font-size: font-rem(16);
-    padding: 16px 0 16px 12px;
+    padding: 8px 18px;
     transition: $time;
     &:last-child {
       border-top: none;
@@ -119,16 +117,16 @@ export default {
       color: $secondary-black;
       border-bottom-color: $secondary-black;
     }
+    @media (min-width: $sm) {
+      padding: 8px 28px;
+      font-size: font-rem(20);
+    }
     @media (min-width: $md) {
-      border: none;
       font-size: font-rem(24);
       font-weight: 400;
       font-family: 'Georgia';
       color: $grey;
-      transition: $time;
-      display: inline-block;
       padding: 16px 12px;
-      border-bottom: 1px solid transparent;
     }
   }
 }
