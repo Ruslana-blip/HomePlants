@@ -22,7 +22,7 @@
         <h2 class="empty__title">{{ $t('bag-no-products-title') }}</h2>
         <p class="empty__desc">{{ $t('bag-check-products') }}</p>
         <RouterLink :to="{ name: 'TheCatalogPage' }" @click="togglePopUpBag">
-          <TheButtonOrange :width="378" :title="$t('return-catalog')" />
+          <TheButtonOrange :width="273" :title="$t('return-catalog')" />
         </RouterLink>
       </div>
     </div>
@@ -83,11 +83,9 @@ export default {
     margin-right: 10px;
     @media (min-width: $sm) {
       flex: 0 0 100px;
-      height: 100px;
     }
     @media (min-width: $md) {
       flex: 0 0 120px;
-      width: 120px;
       margin-right: 12px;
     }
     & img {
@@ -112,9 +110,13 @@ export default {
   // .plant__info
   &__info {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     gap: 10px;
+    @media (min-width: $sm) {
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row;
+    }
   }
 
   // .plant__name
@@ -129,7 +131,7 @@ export default {
   }
   // .plant__price
   &__price {
-    font-size: font-rem(14);
+    font-size: font-rem(16);
     @media (min-width: $sm) {
       font-size: font-rem(18);
     }
@@ -137,9 +139,7 @@ export default {
 
   // .plant__remove
   &__remove {
-    flex: 0 0 10px;
-    width: 18px;
-    height: 18px;
+    flex: 0 0 1px;
     position: relative;
     border: none;
     @media (min-width: $sm) {
@@ -150,13 +150,12 @@ export default {
       position: absolute;
       content: '';
       top: 78px;
-      right: 8px;
+      right: 12px;
       background-image: url('@/assets/images/popup/remove.svg');
       width: 18px;
       height: 18px;
       @media (min-width: $sm) {
         top: 104px;
-        right: 16px;
       }
     }
   }
@@ -169,17 +168,29 @@ export default {
   justify-content: center;
   align-items: center;
   font-family: 'Lato';
+  text-align: center;
   // .empty__title
   &__title {
-    font-size: font-rem(24);
+    font-size: font-rem(20);
     font-weight: 700;
+
+    @media (min-width: $sm) {
+      font-size: font-rem(24);
+    }
   }
   // .empty__desc
   &__desc {
-    font-size: font-rem(18);
-    margin: 16px 0 48px 0;
-    width: 536px;
+    font-size: font-rem(16);
     text-align: center;
+    margin: 16px 0;
+    @media (min-width: $sm) {
+      width: 536px;
+      margin: 16px 0 48px 0;
+      font-size: font-rem(18);
+    }
+  }
+  &__btn {
+    width: 273px;
   }
 }
 </style>
