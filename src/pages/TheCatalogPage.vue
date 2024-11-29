@@ -68,6 +68,9 @@ export default {
       flex-direction: row;
       font-size: font-rem(18);
       margin-bottom: 80px;
+      gap: 32px;
+    }
+    @media (min-width: 1920px) {
       gap: 72px;
     }
   }
@@ -76,26 +79,26 @@ export default {
     flex-wrap: wrap;
     gap: 24px;
     @media (min-width: $md) {
-      gap: 40px;
+      gap: 32px;
     }
 
     @media (min-width: $lg) {
-      flex: 1 1 auto;
-      gap: 60px;
       justify-content: center;
+      flex: 1 1 70%;
     }
-    @media (min-width: $xl) {
+    @media (min-width: 1920px) {
       gap: 72px;
+      flex: 1 1 auto;
     }
   }
   // .plant__filter
   &__filter {
     display: none;
-    @media (min-width: $lg) {
+    @media (min-width: $md) {
       display: block;
-      flex: 1 1 250px;
+      flex: 1 1 30%;
     }
-    @media (min-width: $xl) {
+    @media (min-width: 1920px) {
       flex: 1 1 384px;
     }
   }

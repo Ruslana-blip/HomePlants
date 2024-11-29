@@ -7,7 +7,6 @@
       <span class="filter__categor" @click="showFilter('categories')"> Categories </span>
       <span class="filter__heigt" @click="showFilter('height')"> Висота (см) </span>
     </div>
-
     <div class="filter__cont">
       <div class="filter__price" v-if="isFilterPrice">
         <span class="filter__name">{{ $t('price') }}</span>
@@ -367,10 +366,15 @@ export default {
 .filter {
   font-size: font-rem(18);
   max-height: max-content;
+  display: none;
+  @media (min-width: $md) {
+    display: block;
+  }
   @media (min-width: $xxl) {
     font-size: font-rem(20);
     border-radius: 24px;
   }
+
   &__cont {
     background-color: $ligth-green;
     @media (min-width: $lg) {
@@ -405,8 +409,6 @@ export default {
     @media (min-width: $xxl) {
       font-size: font-rem(24);
     }
-  }
-  &__price {
   }
   &__price,
   &__type,
@@ -443,30 +445,6 @@ export default {
       transform: translateY(-50%);
       padding: 0 4px;
     }
-    // &::before {
-    //   position: absolute;
-    //   top: 0;
-    //   left: 12px;
-    //   z-index: 3;
-    //   font-size: font-rem(12);
-    //   transform: translateY(-50%);
-    //   background-color: $ligth-green;
-    //   width: 26px;
-    //   height: 26px;
-    //   display: flex;
-    //   align-items: center;
-    //   justify-content: center;
-    // }
-    // &:nth-child(1) {
-    //   &::before {
-    //     content: 'ВІд';
-    //   }
-    // }
-    // &:nth-child(2) {
-    //   &::before {
-    //     content: 'До';
-    //   }
-    // }
     & input {
       width: 100%;
       padding: 4px 0 4px 16px;
@@ -476,10 +454,6 @@ export default {
     }
   }
 
-  // .filter__type
-  // &__type {
-  //   margin: 40px 0 32px 0;
-  // }
   // .filter__checkboxes
   &__checkboxes {
     margin-top: 24px;

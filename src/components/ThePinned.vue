@@ -1,5 +1,5 @@
 <template>
-  <div v-if="liked" class="actions__pinned" @click="toggleLike">
+  <div v-if="liked" class="actions__pinned" @click.prevent.stop="toggleLike">
     <img
       src="@/assets/images/catalog/save_selected.svg"
       alt="add to liked plants"

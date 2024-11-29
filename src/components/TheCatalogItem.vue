@@ -1,6 +1,11 @@
 <template>
   <ul class="plant">
-    <li class="plant__item" v-for="plant in showPlants" :key="plant.id">
+    <RouterLink
+      :to="{ name: 'TheSinglePlantPage', params: { id: plant.id } }"
+      class="plant__item"
+      v-for="plant in showPlants"
+      :key="plant.id"
+    >
       <div class="plant__img">
         <img
           :src="Array.isArray(plant.img) ? plant.img[0] : plant.img"
@@ -18,26 +23,24 @@
         />
         <ThePinned :plantId="plant.id" />
       </div>
-      <RouterLink :to="{ name: 'TheSinglePlantPage', params: { id: plant.id } }">
-        <div class="plant__content">
-          <div class="plant__name">
-            {{ $i18n.locale === 'uk' ? plant.name : plant.name_en }}
+      <div class="plant__content">
+        <div class="plant__name">
+          {{ $i18n.locale === 'uk' ? plant.name : plant.name_en }}
+        </div>
+        <div class="plant__main">
+          <div v-if="plant.status === 'Розпродаж'">
+            <span class="plant__originalPrice">{{ plant.price }} ₴ </span>
+            <span class="plant__salesPrice"> {{ plant.price * 0.7 }} ₴ </span>
           </div>
-          <div class="plant__main">
-            <div v-if="plant.status === 'Розпродаж'">
-              <span class="plant__originalPrice">{{ plant.price }} ₴ </span>
-              <span class="plant__salesPrice"> {{ plant.price * 0.7 }} ₴ </span>
-            </div>
-            <div v-else>
-              <span class="plant__price-original">{{ plant.price }} ₴</span>
-            </div>
-            <span :class="getStatusClass(plant?.status)">{{
-              $i18n.locale === 'uk' ? plant.status : plant.status_en
-            }}</span>
+          <div v-else>
+            <span class="plant__price-original">{{ plant.price }} ₴</span>
           </div>
-        </div></RouterLink
-      >
-    </li>
+          <span :class="getStatusClass(plant?.status)">{{
+            $i18n.locale === 'uk' ? plant.status : plant.status_en
+          }}</span>
+        </div>
+      </div>
+    </RouterLink>
   </ul>
 </template>
 
@@ -84,6 +87,7 @@ export default {
 
 <style lang="scss" scoped>
 // .plant
+
 .plant {
   &__name {
     font-size: font-rem(14);
@@ -106,7 +110,7 @@ export default {
       // flex: 1 1 250px;
       flex: 0 1 calc(50% - 40px);
     }
-    @media (min-width: $xxl) {
+    @media (min-width: $xl) {
       flex: 0 1 calc(33.33% - 72px);
     }
   }

@@ -1,8 +1,8 @@
 <template>
   <div class="actions">
     <div class="actions__wrapper">
-      <div class="actions__bag" @click="addPlantToBag"></div>
-      <div class="actions__like" @click="toggleLike"></div>
+      <div class="actions__bag" @click.prevent.stop="addPlantToBag"></div>
+      <div class="actions__like" @click.prevent.stop="toggleLike"></div>
     </div>
     <teleport to="body">
       <div v-if="isPopUpVisible" class="actions__overlay">
