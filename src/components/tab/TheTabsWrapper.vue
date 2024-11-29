@@ -125,7 +125,7 @@ export default {
       font-size: font-rem(20);
     }
     @media (min-width: $md) {
-      width: 240px;
+      min-width: 240px;
       font-size: font-rem(24);
       font-weight: 400;
       font-family: 'Georgia';

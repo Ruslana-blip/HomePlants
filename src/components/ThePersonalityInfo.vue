@@ -136,7 +136,7 @@ export default {
     }
     @media (min-width: $md) {
       margin: 0 auto;
-      flex: 0 1 80%;
+      // flex: 0 1 80%;
     }
     @media (min-width: $lg) {
       flex: 1 0 calc(50% - 72px);

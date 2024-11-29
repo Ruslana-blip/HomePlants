@@ -18,27 +18,25 @@
         />
         <ThePinned :plantId="plant.id" />
       </div>
-
-      <div class="plant__content">
-        <RouterLink
-          :to="{ name: 'TheSinglePlantPage', params: { id: plant.id } }"
-          class="plant__name"
-        >
-          {{ $i18n.locale === 'uk' ? plant.name : plant.name_en }}
-        </RouterLink>
-        <div class="plant__main">
-          <div v-if="plant.status === 'Розпродаж'">
-            <span class="plant__originalPrice">{{ plant.price }} ₴ </span>
-            <span class="plant__salesPrice"> {{ plant.price * 0.7 }} ₴ </span>
+      <RouterLink :to="{ name: 'TheSinglePlantPage', params: { id: plant.id } }">
+        <div class="plant__content">
+          <div class="plant__name">
+            {{ $i18n.locale === 'uk' ? plant.name : plant.name_en }}
           </div>
-          <div v-else>
-            <span class="plant__price-original">{{ plant.price }} ₴</span>
+          <div class="plant__main">
+            <div v-if="plant.status === 'Розпродаж'">
+              <span class="plant__originalPrice">{{ plant.price }} ₴ </span>
+              <span class="plant__salesPrice"> {{ plant.price * 0.7 }} ₴ </span>
+            </div>
+            <div v-else>
+              <span class="plant__price-original">{{ plant.price }} ₴</span>
+            </div>
+            <span :class="getStatusClass(plant?.status)">{{
+              $i18n.locale === 'uk' ? plant.status : plant.status_en
+            }}</span>
           </div>
-          <span :class="getStatusClass(plant?.status)">{{
-            $i18n.locale === 'uk' ? plant.status : plant.status_en
-          }}</span>
-        </div>
-      </div>
+        </div></RouterLink
+      >
     </li>
   </ul>
 </template>
@@ -209,7 +207,7 @@ export default {
       margin-right: 16px;
     }
   }
-  &__originalPric {
+  &__originalPrice {
     text-decoration: line-through;
   }
   // .plant__salesPrice

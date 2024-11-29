@@ -4,9 +4,7 @@
       <TheTabsWrapper
         class="basket__tabs tab"
         :font="'Georgia'"
-        :height="61"
-        :margin="80"
-        :width="840"
+        :margin="40"
         :selectedTab="selectedTab"
         @updateTab="goToNextTab"
       >
@@ -23,14 +21,9 @@
               <span>{{ totalSum }} ₴</span>
             </div>
           </div>
-          <div class="tab__content">
-            <ThePersonalityInfo class="tab__inputs" :width="324" />
-            <TheButtonOrange
-              :title="$t('continue')"
-              :width="280"
-              class="tab__btn"
-              @click="goToNextTab(1)"
-            />
+          <div class="tab__cont">
+            <ThePersonalityInfo class="tab__inputs" />
+            <TheButtonOrange :title="$t('continue')" class="tab__btn" @click="goToNextTab(1)" />
           </div>
         </TheTab>
 
@@ -93,7 +86,9 @@
                       підтримки.
                     </p>
                     <p>Дякуємо за довіру!</p>
-                    <TheButtonOrange @click="handleSubmit" :title="'НА ГОЛОВНУ'" :width="273" />
+                    <RouterLink :to="{ name: 'HomePage' }"
+                      ><TheButtonOrange :title="'НА ГОЛОВНУ'" :width="273"
+                    /></RouterLink>
                   </div>
                 </div>
               </div>
@@ -155,23 +150,52 @@ export default {
 
 <style lang="scss" scoped>
 .tab {
-  margin-bottom: 280px;
+  margin-bottom: 80px;
+
+  @media (min-width: $lg) {
+    margin-bottom: 120px;
+  }
+  @media (min-width: $xxl) {
+    margin-bottom: 280px;
+  }
   // .tab__item
   &__wrapp {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+    @media (min-width: $lg) {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 90px;
+    }
+    @media (min-width: $xxl) {
+      gap: 120px;
+    }
+    @media (min-width: 1920px) {
+      gap: 223px;
+    }
   }
   &__bags {
-    margin-top: 80px;
-    font-family: 'Lato';
-    flex: 0 0 840px;
     background-color: $ligth-green;
-    padding: 64px 40px;
+    margin-top: 40px;
+    padding: 10px;
+    font-family: 'Lato';
+    @media (min-width: $sm) {
+      padding: 40px;
+      flex: 0 1 840px;
+    }
+    @media (min-width: $xxl) {
+      margin-top: 80px;
+
+      padding: 64px 40px;
+    }
   }
   // .tab__content
-  &__content {
-    flex: 0 1 688px;
+  &__cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media (min-width: $lg) {
+      flex: 0 1 688px;
+    }
   }
   // .tab__title
   &__title {
@@ -194,30 +218,56 @@ export default {
   }
   // .tab__inputs
   &__inputs {
-    margin-top: 160px;
-    width: 688px;
-    column-gap: 40px;
-    row-gap: 46px;
+    margin-top: 60px;
+    row-gap: 20px;
+    @media (min-width: $xxl) {
+      margin-top: 160px;
+      width: 688px;
+      column-gap: 40px;
+      row-gap: 46px;
+    }
   }
   // .tab__btn
   &__btn {
-    margin-left: 204px;
+    width: 100%;
+    @media (min-width: $md) {
+      width: 50%;
+    }
+    @media (min-width: $lg) {
+      width: 280px;
+    }
   }
 }
 .tab {
   // .tab__wrapp
   &__item {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Lato';
-    font-size: font-rem(18);
+    @media (min-width: $sm) {
+      display: flex;
+      flex-direction: column;
+      font-family: 'Lato';
+      font-size: font-rem(18);
+    }
   }
   // .tab__pay
   &__pay {
-    margin: 80px 0;
+    margin-top: 40px;
     border-top: 1px solid $dark-purple-gray;
     border-bottom: 1px solid $dark-purple-gray;
-    padding: 40px 150px;
+    margin: 20px 0;
+    padding: 20px 0;
+    @media (min-width: $md) {
+      margin: 40px 0;
+      padding: 40px;
+    }
+    @media (min-width: $lg) {
+      margin: 60px 0;
+      padding: 40px 80px;
+    }
+    @media (min-width: $xxl) {
+      margin: 80px 0;
+
+      padding: 40px 150px;
+    }
   }
   // .tab__heading
   &__heading {
@@ -238,19 +288,44 @@ export default {
   // .tab__desc
   &__desc {
     display: flex;
-    gap: 72px;
-    & p {
-      flex: 1 1 calc(50% - 72px);
+    gap: 12px;
+    flex-direction: column;
+    font-size: font-rem(16);
+    @media (min-width: $md) {
+      flex-direction: row;
+      gap: 24px;
+      font-size: font-rem(18);
+      & p {
+        flex: 1 1 calc(50% - 24px);
+      }
+    }
+    @media (min-width: $lg) {
+      gap: 72px;
+      & p {
+        flex: 1 1 calc(50% - 72px);
+      }
     }
   }
   &__main {
-    display: flex;
+    @media (min-width: $md) {
+      display: flex;
+      gap: 24px;
+    }
   }
   // .tab__maps
   &__maps {
-    width: 910px;
-    height: 640px;
-    margin-right: 160px;
+    margin-top: 24px;
+    width: 100%;
+    height: auto;
+    @media (min-width: $md) {
+      flex: 1 1 calc(50% - 24px);
+    }
+    @media (min-width: $xxl) {
+      width: 910px;
+      height: 640px;
+      margin-right: 160px;
+    }
+
     & img {
       width: 100%;
       height: 100%;
@@ -259,20 +334,40 @@ export default {
   }
 }
 .form {
-  margin-top: 80px;
+  margin-top: 40px;
+  @media (min-width: $md) {
+    flex: 1 1 calc(50% - 24px);
+  }
+  @media (min-width: $lg) {
+    margin-top: 80px;
+  }
   & h3 {
-    font-size: font-rem(24);
-    font-weight: 700;
+    font-size: font-rem(20);
+    @media (min-width: $lg) {
+      font-size: font-rem(24);
+      font-weight: 700;
+    }
   }
   &__radios {
-    margin: 48px 0;
+    margin: 24px 0;
+    @media (min-width: $lg) {
+      margin: 48px 0;
+    }
   }
   // .form__input
   &__input {
-    margin-left: 24px;
+    font-size: font-rem(16);
+    margin-left: 12px;
     &:not(:last-child) {
-      margin-bottom: 24px;
+      margin-bottom: 12px;
     }
+    @media (min-width: $lg) {
+      margin-left: 24px;
+      &:not(:last-child) {
+        margin-bottom: 24px;
+      }
+    }
+
     & label {
       padding-left: 24px;
       position: relative;
@@ -306,7 +401,9 @@ export default {
     }
   }
   &__btn {
-    margin-left: 94px;
+    @media (min-width: $lg) {
+      margin-left: 94px;
+    }
   }
 }
 .popup {
@@ -322,16 +419,21 @@ export default {
   align-items: center;
   // .popup__content
   &__content {
-    width: 880px;
-    height: 800px;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: $white;
+    background-color: $bg-white;
+    @media (min-width: $lg) {
+      width: 880px;
+      height: 800px;
+      background-color: $white;
+    }
   }
   &__wrapp {
-    width: 480px;
+    width: 100%;
     height: 345px;
     display: flex;
     flex-direction: column;
@@ -339,6 +441,13 @@ export default {
     text-align: center;
     align-items: center;
     font-family: 'Lato';
+    font-size: font-rem(16);
+    @media (min-width: $sm) {
+      width: 480px;
+    }
+    @media (min-width: $lg) {
+      font-size: font-rem(18);
+    }
     & h2 {
       font-size: font-rem(24);
       font-weight: 700;
