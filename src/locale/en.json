@@ -320,5 +320,10 @@
   "go-out": "GO OUT",
   "sure-exit": "Are you sure you want to exit?",
   "unsaved": "Your unsaved changes may be lost, and you will not be able to view your purchase history or track your orders.",
-  "stay": "STAY"
+  "stay": "STAY",
+  "from": "From",
+  "to": "To",
+  "name": "Name",
+  "surname": "Surname",
+  "number": "Phone number"
 }

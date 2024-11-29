@@ -149,6 +149,13 @@ export default {
   watch: {
     '$i18n.locale'(newLocale) {
       this.updateOrders(newLocale)
+    },
+    likedPlants: {
+      handler(newLikedPlants) {
+        this.handleLikedPlantsChange(newLikedPlants)
+      },
+      deep: true, // Якщо потрібно відстежувати глибокі зміни
+      immediate: true // Виконує обробник одразу після монтування
     }
   },
   methods: {
@@ -174,17 +181,19 @@ export default {
     },
     updateOrders(locale) {
       this.orders = this.$i18n.messages[locale].orders || []
+    },
+    async handleLikedPlantsChange(newLikedPlants) {
+      try {
+        const plantsPromises = newLikedPlants.map((id) => this.getPlantById(id))
+        const plants = await Promise.all(plantsPromises)
+        this.setFilteredPlants(plants.filter((plant) => plant !== null))
+      } catch (error) {
+        console.error('Error fetching liked plants:', error)
+      }
     }
   },
   async mounted() {
-    try {
-      const plantsPromises = this.likedPlants.map((id) => this.getPlantById(id))
-      const plants = await Promise.all(plantsPromises)
-      this.liked = plants.filter((plant) => plant !== null)
-      this.setFilteredPlants(this.liked)
-    } catch (error) {
-      console.error('Error fetching liked plants:', error)
-    }
+    this.handleLikedPlantsChange(this.likedPlants)
     this.updateOrders(this.$i18n.locale)
   }
 }

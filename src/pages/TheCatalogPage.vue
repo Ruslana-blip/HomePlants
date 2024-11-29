@@ -90,7 +90,9 @@ export default {
   }
   // .plant__filter
   &__filter {
+    display: none;
     @media (min-width: $lg) {
+      display: block;
       flex: 1 1 250px;
     }
     @media (min-width: $xl) {

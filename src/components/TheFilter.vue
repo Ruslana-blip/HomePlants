@@ -13,29 +13,28 @@
         <span class="filter__name">{{ $t('price') }}</span>
         <div class="filter__columns">
           <div class="filter__column">
-            <label for="from">
-              <input
-                type="text"
-                id="from"
-                placeholder="0 ₴"
-                v-model.number="min"
-                @blur="filterPlants"
-                @keyup.enter="filterPlants"
-              />
-            </label>
+            <label for="from">{{ $t('from') }}</label>
+            <input
+              type="text"
+              id="from"
+              placeholder="0 ₴"
+              v-model.number="min"
+              @blur="filterPlants"
+              @keyup.enter="filterPlants"
+            />
           </div>
 
           <div class="filter__column">
-            <label for="to">
-              <input
-                type="text"
-                id="to"
-                placeholder="5 000 ₴"
-                v-model.number="max"
-                @blur="filterPlants"
-                @keyup.enter="filterPlants"
-              />
-            </label>
+            <label for="to">{{ $t('to') }} </label>
+
+            <input
+              type="text"
+              id="to"
+              placeholder="5 000 ₴"
+              v-model.number="max"
+              @blur="filterPlants"
+              @keyup.enter="filterPlants"
+            />
           </div>
         </div>
       </div>
@@ -384,7 +383,7 @@ export default {
   }
   &__btns {
     background-color: $bg-white;
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     gap: 8px;
     @media (min-width: $lg) {
@@ -434,31 +433,40 @@ export default {
       height: 56px;
       width: 146px;
     }
-
-    &::before {
+    & label {
       position: absolute;
       top: 0;
       left: 12px;
-      z-index: 3;
+      background-color: $ligth-green;
+      z-index: 4;
       font-size: font-rem(12);
       transform: translateY(-50%);
-      background-color: $ligth-green;
-      width: 26px;
-      height: 26px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding: 0 4px;
     }
-    &:nth-child(1) {
-      &::before {
-        content: 'ВІд';
-      }
-    }
-    &:nth-child(2) {
-      &::before {
-        content: 'До';
-      }
-    }
+    // &::before {
+    //   position: absolute;
+    //   top: 0;
+    //   left: 12px;
+    //   z-index: 3;
+    //   font-size: font-rem(12);
+    //   transform: translateY(-50%);
+    //   background-color: $ligth-green;
+    //   width: 26px;
+    //   height: 26px;
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    // }
+    // &:nth-child(1) {
+    //   &::before {
+    //     content: 'ВІд';
+    //   }
+    // }
+    // &:nth-child(2) {
+    //   &::before {
+    //     content: 'До';
+    //   }
+    // }
     & input {
       width: 100%;
       padding: 4px 0 4px 16px;

@@ -104,10 +104,10 @@ export default {
     }
     @media (min-width: $lg) {
       // flex: 1 1 250px;
-      flex: 1 1 calc(50% - 40px);
+      flex: 0 1 calc(50% - 40px);
     }
     @media (min-width: $xxl) {
-      flex: 1 0 calc(33.33% - 72px);
+      flex: 0 1 calc(33.33% - 72px);
     }
   }
   // .plant__img

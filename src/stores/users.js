@@ -59,7 +59,7 @@ export const useUsersStore = defineStore('usersStore', {
         number: '',
         email: ''
       }
-      alert('Активний користувач видалений')
+      alert('Ви вийшли з аккаунтв')
     }
   }
 })

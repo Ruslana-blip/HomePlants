@@ -19,12 +19,14 @@ export default {
       required: true
     }
   },
+
   computed: {
     ...mapState(useLikedPlantsStore, ['likedPlants']),
     liked() {
       return this.likedPlants.includes(this.plantId)
     }
   },
+
   methods: {
     ...mapActions(useLikedPlantsStore, ['addLikedPlant', 'removeLikedPlant']),
     toggleLike() {

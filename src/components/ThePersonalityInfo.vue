@@ -1,7 +1,7 @@
 <template>
   <div class="inputs">
     <div class="inputs__field" :style="{ width: width + 'px' }">
-      <label for="name"></label>
+      <label for="name">{{ $t('name') }}</label>
       <Field
         :rules="validateName"
         type="text"
@@ -13,7 +13,7 @@
       <ErrorMessage name="name" class="inputs__error" />
     </div>
     <div class="inputs__field" :style="{ width: width + 'px' }">
-      <label for="lastName"></label>
+      <label for="lastName">{{ $t('surname') }}</label>
       <Field
         :rules="validateName"
         type="text"
@@ -25,7 +25,7 @@
       <ErrorMessage name="lastName" class="inputs__error" />
     </div>
     <div class="inputs__field" :style="{ width: width + 'px' }">
-      <label for="number"></label>
+      <label for="number">{{ $t('number') }}</label>
       <Field
         :rules="validateNumber"
         type="tel"
@@ -37,7 +37,7 @@
       <ErrorMessage name="number" class="inputs__error" />
     </div>
     <div class="inputs__field" :style="{ width: width + 'px' }">
-      <label for="email"></label>
+      <label for="email">E-mail</label>
       <Field
         :rules="validateEmail"
         id="email"
@@ -141,8 +141,7 @@ export default {
     @media (min-width: $lg) {
       flex: 1 0 calc(50% - 72px);
     }
-
-    &::before {
+    & label {
       position: absolute;
       top: 0;
       left: 12px;
@@ -150,33 +149,7 @@ export default {
       font-size: font-rem(12);
       transform: translateY(-50%);
       background-color: $bg-white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    &:nth-child(1) {
-      &::before {
-        content: 'Ім’я';
-        width: 30px;
-      }
-    }
-    &:nth-child(2) {
-      &::before {
-        content: 'Прізвище';
-        width: 64px;
-      }
-    }
-    &:nth-child(3) {
-      &::before {
-        content: 'Номер телефону';
-        width: 102px;
-      }
-    }
-    &:nth-child(4) {
-      &::before {
-        content: 'E-mail';
-        width: 42px;
-      }
+      padding: 0 4px;
     }
   }
   // .inputs__input
