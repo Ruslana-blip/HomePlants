@@ -451,7 +451,6 @@ export default {
     }
   }
   &__price {
-    font-weight: 600;
     display: flex;
     gap: 8px;
     font-size: font-rem(20);
